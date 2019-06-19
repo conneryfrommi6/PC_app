@@ -1,0 +1,25 @@
+
+@font-face{
+    font-family: 'Amaranth-Bold';
+    src: url(../assets/fonts/Amaranth-Bold.ttf);
+}
+
+@font-face{
+    font-family: 'Amaranth-Italic';
+    src: url(../assets/fonts/Amaranth-Italic.ttf);
+}
+
+@font-face{
+    font-family: 'Amaranth-Regular';
+    src: url(../assets/fonts/Amaranth-Regular.ttf);
+}
+
+@font-face{
+    font-family: 'DroidSerif';
+    src: url(../assets/fonts/DroidSerif.ttf);
+}
+
+@font-face{
+    font-family: 'AngryBirds-Regular';
+    src: url(../assets/fonts/AngryBirds-Regular.ttf);
+}

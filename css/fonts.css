@@ -1,17 +1,16 @@
-
 @font-face{
-    font-family: 'Amaranth-Bold';
-    src: url(../assets/fonts/Amaranth-Bold.ttf);
-}
-
-@font-face{
-    font-family: 'Amaranth-Italic';
-    src: url(../assets/fonts/Amaranth-Italic.ttf);
+    font-family: 'Pattaya-Regular';
+    src: url(../assets/fonts/Pattaya-Regular.ttf);
 }
 
 @font-face{
     font-family: 'Amaranth-Regular';
     src: url(../assets/fonts/Amaranth-Regular.ttf);
+}
+
+@font-face{
+    font-family: 'ElMessiri-Regular';
+    src: url(../assets/fonts/ElMessiri-Regular.ttf);
 }
 
 @font-face{

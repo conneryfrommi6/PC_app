@@ -121,16 +121,19 @@
     text-decoration: none;
     display: block;
     color: snow;
+
 }
 
 .nav a {
     padding-left: 15px;
+    border: 2px solid transparent;
 }
 
 .nav a:hover {
     background: linear-gradient(to bottom right, #6276cd, #6e859d, #404d6d, #6276cd);
     box-shadow: 1px 5px 15px #6276cd;
     border-radius: 25px;
+    border: 2px outset;
 }
 
 .nav-list {
@@ -177,7 +180,9 @@
 .footer {
     border-top: 1px solid rgba(0, 0, 0, 0.50);
     border-bottom: 1px solid rgba(0, 0, 0, 0.50);
+    color: #001a35;
 }
+
 .footer > div {
     background: #6276cd url(../assets/images/noize.png) repeat 100% 0;
     text-align: center;
@@ -186,7 +191,7 @@
 
 .contacts {
     display: flex;
-    justify-content: space-evenly;
+    justify-content: space-around;
     padding: 10px;
     flex-wrap: wrap;
     position: relative;
@@ -199,3 +204,36 @@
     width: 80%;
     bottom: 16%;
 }
+
+.contacts .tel {
+    background: url("../assets/images/icons/icons8-phone-filled-50.png") no-repeat;
+    background-size: 15px;
+    width: 15px;
+}
+
+.contacts .e-mail {
+    background: url("../assets/images/icons/icons8-envelope-filled-50.png") no-repeat;
+    background-size: 15px;
+    width: 15px;
+}
+
+.contacts .address {
+    background: url("../assets/images/icons/icons8-marker-filled-50-2.png") no-repeat;
+    background-size: 15px;
+    width: 15px;
+}
+
+.contacts .tel:hover,
+.contacts .e-mail:hover,
+.contacts .address:hover {
+    background-size: 17px;
+    background-position-y: -1px;
+}
+
+.contacts-items {
+    display: flex;
+}
+.contacts-items a {
+    padding-right: 5px;
+}
+

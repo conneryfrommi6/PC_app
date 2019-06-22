@@ -4,6 +4,7 @@
     margin: 0 auto;
     overflow: hidden;
     display: flex;
+    font-family: ElMessiri-Regular, serif;
 }
 
 .side-bar {
@@ -15,10 +16,11 @@
     box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.15);
     border-left: 1px solid rgba(0, 0, 0, 0.50);
     border-right: 1px solid rgba(0, 0, 0, 0.50);
-    padding: 40px;
+    padding: 10px 180px 10px 30px;
 }
 
 .logo {
+    position: fixed;
     background: url("../assets/images/logo-white.png") no-repeat 100% 0;
     background-size: 150px;
     height: 150px;
@@ -26,8 +28,8 @@
 }
 
 .social {
-    padding-top: 20px;
-    padding-bottom: 150%;
+    position: fixed;
+    margin-top: 150px;
 }
 
 .social > ul {
@@ -111,7 +113,8 @@
 
 .nav {
     position: fixed;
- }
+    margin-top: 300px;
+}
 
 .side-bar a {
     padding: 6px;
@@ -121,7 +124,7 @@
 }
 
 .nav a {
-padding-left: 25px;
+    padding-left: 15px;
 }
 
 .nav a:hover {
@@ -130,16 +133,69 @@ padding-left: 25px;
     border-radius: 25px;
 }
 
+.nav-list {
+    position: relative;
+}
 
-/* Style page content */
+.nav-item {
+    padding-top: 20px;
+}
+
+.nav-item:first-child::before {
+    content: "";
+    border: .7px inset;
+    position: absolute;
+    width: 110%;
+    margin-top: -8%;
+}
+
+.nav-item::after {
+    content: "";
+    border: .7px inset;
+    position: absolute;
+    width: 110%;
+    margin-top: 8%;
+}
+
+.central {
+    display: flex;
+    flex-direction: column;
+}
+
 .main {
     padding: 40px;
-    font-family: ElMessiri-Regular, serif;
     font-size: 20px;
     background: #a4c2ae url(../assets/images/noize.png) repeat 100% 0;
+    flex-grow: 1;
 }
 
 .main > ul,
 .main > ol {
     list-style: initial;
+}
+
+.footer {
+    border-top: 1px solid rgba(0, 0, 0, 0.50);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.50);
+}
+.footer > div {
+    background: #6276cd url(../assets/images/noize.png) repeat 100% 0;
+    text-align: center;
+    font-weight: bold;
+}
+
+.contacts {
+    display: flex;
+    justify-content: space-evenly;
+    padding: 10px;
+    flex-wrap: wrap;
+    position: relative;
+}
+
+.contacts::after {
+    content: "";
+    position: absolute;
+    border: 0.3px dotted #596d7f;
+    width: 80%;
+    bottom: 16%;
 }

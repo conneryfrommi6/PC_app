@@ -17,64 +17,87 @@
             <ul>
                 <li><a href="https://www.facebook.com/profile.php?id=100038310137553" class="facebook"
                        target="_blank"> </a></li>
-                <li><a href="#" class="google"></a></li>
+                <li><a href="#" class="google" onclick="return false"></a></li>
                 <li><a href="https://twitter.com/comp_doct" class="tweeter" target="_blank"></a></li>
-                <li><a href="#" class="vk"></a></li>
-                <li><a href="#" class="instagram"></a></li>
+                <li><a href="#" class="vk" onclick="return false"></a></li>
+                <li><a href="#" class="instagram" onclick="return false"></a></li>
             </ul>
         </div>
         <div class="nav">
             <ul class="nav-list">
                 <li class="nav-item"><a href="./index.html"><span> Главная </span></a></li>
-                <li class="nav-item"><a href="#"><span> О нас </span></a></li>
+                <li class="nav-item"><a href="./pages/about.html"><span> О нас </span></a></li>
                 <li class="nav-item"><a href="#"><span> Услуги </span></a></li>
                 <li class="nav-item"><a href="#"><span> Заказать </span></a></li>
             </ul>
         </div>
 
     </div>
+
     <div class="central">
         <main class="main">
-            <h3> БЫСТРО! КАЧЕСТВЕННО! ПО ДОСТУПНОЙ ЦЕНЕ!!</h3>
-            <p> Поможем Вам и Вашему компьютеру, ноутбуку, планшету и телефону.</p>
-            <h2> Услуги:</h2>
-            <ul>
-                <li>Ремонт и модернизация любой сложности.</li>
-                <li>Переустановка Windows, установка ПО, антивируса</li>
-                <li>Перепрошивка</li>
-                <li>Восстановление информации с ЖД/флешки</li>
-                <li>Замена матрицы</li>
-                <li>Установка навигатора</li>
-                <li>Чистка от пыли и замена термопасты</li>
-                <li>Заправка картриджа (с выездом)</li>
-            </ul>
-            <h2> Также возможны:</h2>
-            <ol>
-                <li> Удаленная помощь в найстройке ПК.</li>
-                <li> Вызов курьера или мастера на дом.</li>
-            </ol>
-            <h2> При сумме оплаты от 100 рублей услуги курьера БЕСПЛАТНО!</h2>
-            <h2> Работаем в выходные!</h2>
-            <h2> Режим работы:</h2>
-            <p> Понедельник-пятница : 8.00 – 21.00,</p>
-            <p> Суббота-воскресенье: 10.00-18.00.</p>
-            <p> ООО "Компьютерный помощник"</p>
-            <p> т. 8 (029) 113-56-77</p>
-            <p> г.Минск. Проспект Машерова, 134, офис 32</p>
-            <p>Vyjuj negjuj ntrcnf pltcm Vyjuj negjuj ntrcnf pltcm Vyjuj negjuj ntrcnf pltcm
-                Vyjuj negjuj ntrcnf pltcm Vyjuj negjuj ntrcnf pltcm Vyjuj negjuj ntrcnf pltcm
-                Vyjuj negjuj ntrcnf pltcm Vyjuj negjuj ntrcnf pltcm Vyjuj negjuj ntrcnf pltcm
-                Vyjuj negjuj ntrcnf pltcm Vyjuj negjuj ntrcnf pltcm Vyjuj negjuj ntrcnf pltcm
-                Vyjuj negjuj ntrcnf pltcm Vyjuj negjuj ntrcnf pltcm Vyjuj negjuj ntrcnf pltcm
-                Vyjuj negjuj ntrcnf pltcm Vyjuj negjuj ntrcnf pltcm Vyjuj negjuj ntrcnf pltcm
-                Vyjuj negjuj ntrcnf pltcm Vyjuj negjuj ntrcnf pltcm Vyjuj negjuj ntrcnf pltcm
-                Vyjuj negjuj ntrcnf pltcm Vyjuj negjuj ntrcnf pltcm Vyjuj negjuj ntrcnf pltcm
-                Vyjuj negjuj ntrcnf pltcm Vyjuj negjuj ntrcnf pltcm Vyjuj negjuj ntrcnf pltcm
-                Vyjuj negjuj ntrcnf pltcm Vyjuj negjuj ntrcnf pltcm Vyjuj negjuj ntrcnf pltcm
-                Vyjuj negjuj ntrcnf pltcm Vyjuj negjuj ntrcnf pltcm Vyjuj negjuj ntrcnf pltcm
-                Vyjuj negjuj ntrcnf pltcm Vyjuj negjuj ntrcnf pltcm Vyjuj negjuj ntrcnf pltcm
-                Vyjuj negjuj ntrcnf pltcm Vyjuj negjuj ntrcnf pltcm Vyjuj negjuj ntrcnf pltcm
-                Vyjuj negjuj ntrcnf pltcm Vyjuj negjuj ntrcnf pltcm Vyjuj negjuj ntrcnf pltcm</p>
+            <figure class="greetings">
+                <img class="minsk-pic" src="assets/images/main/minsk.png" title="Принимаем заказы по всему Минску!" alt="Мастерская Минска"/>
+                <figcaption> Добро пожаловать!</figcaption>
+            </figure>
+            <div class="offer">
+                <div class="fast-pic"></div>
+                <div class="quality-pic"></div>
+                <div class="price-pic"></div>
+            </div>
+            <figure class="help">
+                <figcaption>Поможем Вам и Вашему компьютеру! </figcaption>
+                <img class="help-pic" src="assets/images/main/help.gif" alt="Поможем"/>
+            </figure>
+            <div class="services">
+                    <div class="pc">
+                        <img class="pc-pic" src="assets/images/main/computers.png" title="Компьютеры и ноутбуки" alt="Компьютеры и ноутбуки">
+                        <ul class="pc-items">
+                            <li>Ремонт и модернизация любой сложности (ПК/ноутбуки)</li>
+                            <li>Переустановка Windows</li>
+                            <li>Установка ПО</li>
+                            <li>Лечение и установка антивируса</li>
+                            <li>Восстановление информации с ЖД/флешки</li>
+                            <li>Чистка от пыли и замена термопасты</li>
+                        </ul>
+
+                </div>
+                <div class="tablet">
+                    <img class="tablet-pic" src="assets/images/main/tablet.png" title="Планшеты" alt="Планшеты">
+
+                        <ul>
+                            <li>Ремонт и замена на оригинальные запчасти производителя</li>
+                            <li>Установка навигатора</li>
+                            <li>Замена матрицы экрана</li>
+                            <li>Перепрошивка</li>
+                        </ul>
+
+                </div>
+                <div class="xerox">
+                    <img class="xerox-pic" src="assets/images/main/xerox.png" title="Копиры" alt="Копиры">
+
+                    <ul>
+                        <li>Замена картриджа</li>
+                        <li>Заправка картриджа (с выездом)</li>
+                    </ul>
+
+            </div>
+                <div class="services-other">
+                <img class="services-other-pic" src="assets/images/main/master.png" title="Прочие услуги" alt="Прочие услуги">
+
+                <ul>
+                    <li>Вызов курьера или мастера на дом</li>
+                    <li>Удаленная помощь в найстройке компьютера</li>
+                </ul>
+            </div>
+            </div>
+            <div class="vip"> <p>При сумме оплаты <u>от 100 рублей</u> услуги курьера <span> бесплатно!</span></p></div>
+
+            <!--<h2> Работаем в выходные!</h2>-->
+            <!--<h2> Режим работы:</h2>-->
+            <!--<p> Понедельник-пятница : 8.00 – 21.00,</p>-->
+            <!--<p> Суббота-воскресенье: 10.00-18.00.</p>-->
+
         </main>
         <footer class="footer">
             <div class="contacts">
@@ -93,7 +116,7 @@
                 </div>
             </div>
             <div class="copy">
-                <p>&copy; 2019 ИП Куваев А.В. All Rights Reserved.</p>
+                <p>&copy; 2019 ИП Куваев А.A. All Rights Reserved.</p>
             </div>
         </footer>
     </div>

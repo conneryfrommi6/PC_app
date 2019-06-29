@@ -228,11 +228,6 @@
     flex-direction: column;
 }
 
-.main-about {
-    background: url(../assets/images/background/floor-tile.png) repeat 100% 0;
-    padding: 20px;
-}
-
 .greetings {
     display: flex;
     flex-wrap: wrap;

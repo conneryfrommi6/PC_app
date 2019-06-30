@@ -1,6 +1,14 @@
 .main-about {
     background: url(../assets/images/background/floor-tile.png) repeat 100% 0;
     padding: 20px;
+    font-size: 22px;
+}
+
+.main-about h2 {
+    font-family: Pattaya-Regular, serif;
+    font-size: 30px;
+    color: #3c4a5a;
+    text-align: center;
 }
 
 .info {
@@ -24,7 +32,17 @@
     display: flex;
     flex-wrap: wrap;
     justify-content: space-around;
-    padding-top: 20px;
+    padding-top: 60px;
+}
+
+.workers::before {
+    content: "";
+    border: dotted 0.5px rgba(53, 61, 255, .7);
+    position: absolute;
+    width: 65%;
+    margin-top: -40px;
+    box-shadow: 0 0 2px 3px rgba(53, 61, 255, 0.38);
+    border-radius: 40%;
 }
 
 .workers figure {
@@ -73,13 +91,23 @@
 
 .schedule {
     display: flex;
-    justify-content: center;
-    margin-top: 40px;
     flex-wrap: wrap;
+    justify-content: center;
+    margin-top: 110px;
+    margin-bottom: 20px;
 }
 
+.schedule::before {
+    content: "";
+    border: dotted 0.5px rgba(53, 61, 255, .7);
+    position: absolute;
+    width: 65%;
+    margin-top: -60px;
+    box-shadow: 0 0 2px 3px rgba(53, 61, 255, 0.38);
+    border-radius: 40%;
+ }
+
 .schedule h2 {
-    font-size: 30px;
     color: #c92839;
     padding-bottom: 15px;
 }
@@ -104,16 +132,83 @@
     font-size: 14px;
 }
 
+.contacts-about {
+    margin-top: 40px;
+    font-size: 21px;
+    position: relative;
+}
+
+.contacts-about div {
+    margin-left: 30%;
+    padding-bottom: 10px;
+}
+
+.contacts-about div span {
+    vertical-align: super;
+}
+
+.contacts-about h2 {
+    margin-bottom: 30px;
+    margin-left: -10%;
+}
+
+.contacts-about img {
+    width: 40px;
+    margin-right: 1%;
+}
+
+.contacts-about div:hover {
+    color: #2d328e;
+    font-weight: bold;
+}
+
+.contacts-about span {
+    align-items: center;
+}
+
+.contacts-about::before {
+    content: "";
+    border: dotted 2px #55618e;
+    position: absolute;
+    width: 50%;
+    margin-top: -20px;
+    margin-left: 25%;
+}
+
+.contacts-about::after {
+    content: "";
+    border: dotted 2px #55618e;
+    position: absolute;
+    width: 50%;
+    margin-bottom: -20px;
+    margin-left: 25%;
+}
+
 .feedback {
     margin: 50px 40px 0 40px;
 }
 
 .feedback h2 {
-    font-family: Pattaya-Regular, serif;
-    font-size: 30px;
-    color: #3c4a5a;
     margin-bottom: 30px;
-    text-align: center;
+}
+
+.feedback h2 span {
+    color: rgba(67, 75, 111, 0.54);
+    font-size: 26px;
+}
+
+.feedback span:hover {
+    color: rgb(55, 47, 135);
+}
+
+.feedback .pointer {
+    font-size: 35px;
+    color: #c92839;
+    font-weight: 900;
+}
+
+.feedback .pointer:hover {
+    color: #c92839;
 }
 
 .feedback blockquote {
@@ -129,7 +224,6 @@
 .feedback blockquote:nth-child(odd) {
     background: rgba(145, 143, 250, 0.3);
 }
-
 
 .feedback blockquote:before {
     content: "\201C";
@@ -147,11 +241,12 @@
     text-align: center;
     line-height: 50px;
 }
+
 .feedback blockquote:after {
     content: "";
     width: 4px;
     background: white;
-    position:absolute;
+    position: absolute;
     left: 70px;
     top: 20px;
     bottom: 20px;
@@ -165,4 +260,23 @@
 
 .feedback blockquote cite {
     text-transform: uppercase;
+}
+
+.hide {
+    display: none;
+}
+.hide + label ~ div{
+    display: none;
+}
+
+.hide + label {
+    cursor: pointer;
+}
+
+.hide:checked + label + div {
+    display: block;
+    -moz-box-shadow: inset 3px 3px 10px #7d8e8f;
+    -webkit-box-shadow: inset 3px 3px 10px #7d8e8f;
+    box-shadow: inset 3px 3px 10px #7d8e8f;
+    padding: 20px;
 }

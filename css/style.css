@@ -326,8 +326,6 @@
 
 .vip {
     display: flex;
-    background: url("../assets/images/main/stars.png");
-    background-size: 85px;
     height: 80px;
     width: 80%;
     justify-content: center;
@@ -336,6 +334,11 @@
     font-size: 25px;
     align-self: center;
     color: #0a071f;
+}
+
+.vip:hover {
+    background: url("../assets/images/main/stars.png");
+    background-size: 85px;
 }
 
 .vip span {

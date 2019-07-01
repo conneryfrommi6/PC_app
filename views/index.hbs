@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Список Услуг</title>
+    <meta charset="utf-8" />
+</head>
+<body>
+<h1>Список Услуг</h1>
+<p><a href="/create">Добавить услугу</a></p>
+<table>
+    <tr><th>Наименование услуги</th><th>Цена(бел.р.)</th><th>Гарантия(мес.)</th></tr>
+    {{#each services}}
+        <tr>
+            <td>{{this.name_service}}</td>
+            <td>{{this.price}}</td>
+            <td>{{this.guarantee}}</td>
+            <td>
+                <a href="/edit/{{this.id_service}}">Изменить</a>|
+                <form action="delete/{{this.id_service}}" method="POST" style="display:inline;">
+                    <input type="submit" value="Удалить" />
+                </form>
+            </td>
+        </tr>
+    {{/each}}
+</table>
+</body>
+<html>

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Список заказов</title>
+    <meta charset="utf-8" />
+</head>
+<body>
+<h1>Список заказов</h1>
+<p><a href="/create">Добавить заказ</a></p>
+<table>
+    <tr><th>Дата заказа</th><th>Техника</th><th>дата выполнения</th><th>Оплачено</th>
+        <th>Выдано</th><th>К оплате</th><th>Комметарии</th><th>Код клиента</th>
+        <th>Код мастера</th><th>Код услуги</th></tr>
+    {{#each orders}}
+        <tr>
+            <td>{{this.date_order}}</td>
+            <td>{{this.name_device}}</td>
+            <td>{{this.date_finish}}</td>
+            <td>{{this.paid}}</td>
+            <td>{{this.returned}}</td>
+            <td>{{this.price_final}}</td>
+            <td>{{this.comments}}</td>
+            <td>{{this.id_client}}</td>
+            <td>{{this.id_master}}</td>
+            <td>{{this.id_service}}</td>
+            <td>
+                <a href="/edit/{{this.id_order}}">Изменить</a>|
+                <form action="delete/{{this.id_order}}" method="POST" style="display:inline;">
+                    <input type="submit" value="Удалить" />
+                </form>
+            </td>
+        </tr>
+    {{/each}}
+</table>
+</body>
+<html>

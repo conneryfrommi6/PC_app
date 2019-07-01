@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Список мастеров</title>
+    <meta charset="utf-8" />
+</head>
+<body>
+<h1>Список мастеров</h1>
+<p><a href="/create">Добавить мастера</a></p>
+<table>
+    <tr><th>ФИО</th><th>Адрес</th><th>Телефон</th><th>э-мейл</th><th>Код_специализации</th></tr>
+    {{#each masters}}
+        <tr>
+            <td>{{this.name_client}}</td>
+            <td>{{this.adress}}</td>
+            <td>{{this.phone}}</td>
+            <td>{{this.e-mail}}</td>
+            <td>{{this.id_specialization}}</td>
+            <td>
+                <a href="/edit/{{this.id_master}}">Изменить</a>|
+                <form action="delete/{{this.id_master}}" method="POST" style="display:inline;">
+                    <input type="submit" value="Удалить" />
+                </form>
+            </td>
+        </tr>
+    {{/each}}
+</table>
+</body>
+<html>

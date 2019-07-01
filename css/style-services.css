@@ -1,0 +1,22 @@
+.main-services {
+    background: url(../assets/images/background/country-quilt.png) repeat 100% 0;
+    padding: 40px;
+}
+
+.test {
+height: 600px;
+    display: flex;
+    flex-direction: column;
+    font-size: 30px;
+    text-align: center;
+}
+
+.test a {
+    padding-top: 50px;
+    font-weight: bold;
+    color: #1c168e;
+}
+
+.test a:nth-child(odd) {
+    color: #548e55;
+}

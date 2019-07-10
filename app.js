@@ -42,6 +42,10 @@ const mysql = require("mysql2");
 const express = require("express");
 const bodyParser = require("body-parser");
 
+//для favicon
+// const favicon = require('serve-favicon');
+// const path = require('path');
+
 const app = express();
 const urlencodedParser = bodyParser.urlencoded({extended: false});
 
@@ -53,13 +57,34 @@ const pool = mysql.createPool({
   password: ""
 });
 
+
+// // // тестирование подключения
+// connection.connect(function (err) {
+//   if (err) {
+//     return console.error("Ошибка: " + err.message);
+//   } else {
+//     console.log("Подключение к серверу MySQL успешно установлено");
+//   }
+// });
+
 app.set("view engine", "hbs");
 
-// получение списка услуг
-app.get("/", function(req, res){
+
+// получение списка услуг для веб-сайта
+app.get("/our_services", function(req, res){
   pool.query("SELECT * FROM services", function(err, data) {
     if(err) return console.log(err);
-    res.render("index.hbs", {
+    res.render("services_website.hbs", {
+      services: data
+    });
+  });
+});
+
+// получение списка услуг
+app.get("/services", function(req, res){
+  pool.query("SELECT * FROM services", function(err, data) {
+    if(err) return console.log(err);
+    res.render("services.hbs", {
       services: data
     });
   });
@@ -95,5 +120,25 @@ app.get("/orders", function(req, res){
   });
 });
 
-app.listen(3000);
+// получение списка для авторизации
+app.get("/auth", function(req, res){
+  pool.query("SELECT * FROM authorization", function(err, data) {
+    if(err) return console.log(err);
+    res.render("auth.hbs", {
+      authorization: data
+    });
+  });
+});
 
+// переход на общую страницу для работы с базой
+app.get("/", function(req, res){
+      res.render("index.hbs")
+});
+
+
+app.listen(3000, "127.0.0.1");
+
+app.use('/css', express.static('css'));
+app.use('/assets', express.static('assets'));
+
+// app.use(favicon(path.join(__dirname, 'assets', 'favicon.ico')));

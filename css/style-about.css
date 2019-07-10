@@ -1,5 +1,7 @@
 .main-about {
-    background: url(../assets/images/background/floor-tile.png) repeat 100% 0;
+    background: url(../assets/images/background/about.jpg) repeat 100% 0;
+    background-size: cover;
+    /*background-size: 100% auto;*/
     padding: 20px;
     font-size: 22px;
 }

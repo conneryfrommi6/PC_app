@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Список Услуг</title>
+    <meta charset="utf-8" />
+    <link rel="stylesheet"  type = "text/css" href="css/style.css">
+    <link rel="stylesheet"  type = "text/css" href="css/style-services.css">
+    <link rel="stylesheet" type = "text/css" href="css/reset.css">
+    <link rel="stylesheet" type = "text/css" href="css/fonts.css">
+
+</head>
+<body>
+
+<div class="wrapper">
+    <div class="side-bar">
+        <div class="logo"></div>
+
+        <div class="social">
+            <ul>
+                <li><a href="https://www.facebook.com/profile.php?id=100038310137553" class="facebook"
+                       target="_blank"> </a></li>
+                <li><a href="#" class="google" onclick="return false"></a></li>
+                <li><a href="https://twitter.com/comp_doct" class="tweeter" target="_blank"></a></li>
+                <li><a href="#" class="vk" onclick="return false"></a></li>
+                <li><a href="#" class="instagram" onclick="return false"></a></li>
+            </ul>
+        </div>
+        <div class="nav">
+            <ul class="nav-list">
+                <li class="nav-item"><a href="./index.html"><span> Главная </span></a></li>
+                <li class="nav-item"><a href="./pages/about.html"><span> О нас </span></a></li>
+                <li class="nav-item"><a href="./pages/services.html"><span> Услуги </span></a></li>
+                <li class="nav-item"><a href="./pages/order.html"><span> Заказать </span></a></li>
+            </ul>
+        </div>
+
+    </div>
+
+    <div class="central">
+        <main class="main main-services">
+
+
+<h1 class="title">Услуги и Цены:</h1>
+<table class="table">
+    <tr><th>Наименование услуги</th><th> Стоимость(бел.р.)</th></tr>
+    {{#each services}}
+        <tr>
+            <td>{{this.name_service}}</td>
+            <td>{{this.price}}</td>
+         </tr>
+    {{/each}}
+</table>
+
+        </main>
+        <footer class="footer">
+            <div class="contacts">
+                <div class="contacts-items">
+                    <a href="tel:+375291135677" title="Позвоните" class="tel"></a>
+                    <span>8(029)113-56-77</span>
+                </div>
+                <div class="contacts-items">
+                    <a href="mailto:computer_doctor@tutanota.com" title="Отправьте письмо" class="e-mail"></a>
+                    <span>computer_doctor@tutanota.com</span>
+                </div>
+                <div class="contacts-items">
+                    <a href="https://goo.gl/maps/NqF6KK5yPjTX7cQE8" title="Приезжайте" target="_blank"
+                       class="address"></a>
+                    <span>г.Минск. Проспект Машерова, 134, офис 32</span>
+                </div>
+            </div>
+            <div class="copy">
+                <p>&copy; 2019 ИП Куваев А.A. All Rights Reserved.</p>
+            </div>
+        </footer>
+    </div>
+</div>
+
+
+</body>
+</html>

@@ -1,0 +1,42 @@
+.main-auth {
+    background: url(../assets/images/background/key.jpg);
+    background-size: cover;
+    padding: 10% 20%;
+    font-weight: bold;
+    font-size: 25px;
+    color: #11102f;
+    text-shadow: 0 0 #cbf9f7, 0 1px #f2f9d7, 2px 0 #dff9e5, 0 -1px #8b9177;
+}
+
+.main-auth table {
+    margin: auto;
+    display: none;
+}
+
+.contact-form h2 {
+    color: #09042f;
+}
+
+.contact-form li{
+    border-bottom:none;
+}
+
+
+.contact-form li:last-child {
+    padding-top: 40px;
+    padding-bottom: 47px;
+}
+
+.contact-form input:required {
+    background: rgb(225, 225, 225);
+}
+
+.contact-form label {
+    width: 120px;
+    padding-left: 100px;
+}
+
+
+.contact-form li:first-child, .contact-form li:last-child {
+    border-bottom: none;
+}

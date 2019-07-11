@@ -1,18 +1,24 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Список заказов</title>
+    <title>Заказы</title>
     <meta charset="utf-8" />
+    <link rel="stylesheet"  type = "text/css" href="css/style_hbs.css">
+    <link rel="stylesheet" type = "text/css" href="css/reset.css">
+    <link rel="stylesheet" type = "text/css" href="css/fonts.css">
 </head>
-<body style="background-color: #dad3f9">
-<h1 style="color: #1b2577; font-size: 40px; font-family: 'Monotype Corsiva',serif; text-align: center">Список заказов</h1>
-<p><a href="/create" style="color: #771e1f; font-size: 30px">Добавить заказ</a></p>
-<table  style="margin: auto">
-    <tr><th>Дата заказа</th><th>Техника</th><th>дата выполнения</th><th>Оплачено</th>
+<body>
+<main class="main-all">
+<h1>Список заказов мастерской "Компьютерный доктор"</h1>
+<p class="add"><a href="/create" class='button-add'>Добавить заказ</a></p>
+
+<table class="table-all">
+    <tr><th>Номер</th><th>дата заказа</th><th>Техника</th><th>дата выполнения</th><th>Оплачено</th>
         <th>Выдано</th><th>К оплате</th><th>Комметарии</th><th>Код клиента</th>
         <th>Код мастера</th><th>Код услуги</th></tr>
     {{#each orders}}
         <tr>
+            <td>{{this.id_order}}</td>
             <td>{{this.date_order}}</td>
             <td>{{this.name_device}}</td>
             <td>{{this.date_finish}}</td>
@@ -24,13 +30,14 @@
             <td>{{this.id_master}}</td>
             <td>{{this.id_service}}</td>
             <td>
-                <a href="/edit/{{this.id_order}}">Изменить</a>|
-                <form action="delete/{{this.id_order}}" method="POST" style="display:inline;">
-                    <input type="submit" value="Удалить" />
+                <a class='button-change' href="/edit/{{this.id_order}}">изменить</a>
+                <form action="delete/{{this.id_order}}" method="POST">
+                    <input class="delete-all" type="submit" value="удалить" />
                 </form>
             </td>
         </tr>
     {{/each}}
 </table>
+</main>
 </body>
-<html>
+</html>

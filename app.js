@@ -139,6 +139,6 @@ app.get("/", function(req, res){
 app.listen(3000, "127.0.0.1");
 
 app.use('/css', express.static('css'));
-app.use('/assets', express.static('assets'));
-
+app.use( '/assets', express.static('assets'));
+// app.use( '/scripts', express.static('scripts'));
 // app.use(favicon(path.join(__dirname, 'assets', 'favicon.ico')));

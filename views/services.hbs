@@ -1,32 +1,36 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Список Услуг</title>
+    <title>Услуги</title>
     <meta charset="utf-8" />
-    <link rel="stylesheet"  type = "text/css" href="css/style.css">
+    <link rel="stylesheet"  type = "text/css" href="css/style_hbs.css">
     <link rel="stylesheet" type = "text/css" href="css/reset.css">
     <link rel="stylesheet" type = "text/css" href="css/fonts.css">
-    <link rel="icon" type = "text/css" href="favicon.png">
 
 </head>
 <body>
-<h1>Список Услуг</h1>
-<p><a href="/create" style="color: #771e1f; font-size: 30px">Добавить услугу</a></p>
-<table style="margin: auto">
-    <tr><th>Наименование услуги</th><th>Цена(бел.р.)</th><th>Гарантия(мес.)</th></tr>
+<main class="main-all">
+<h1>Услуги мастерской "Компьютерный доктор"</h1>
+<p class="add"><a href="/create" class='button-add'>Добавить услугу</a></p>
+
+<table class="table-all">
+    <tr><th>Номер</th><th>Услуга</th><th>Цена (бел.р.)</th><th>Гарантия (мес.)</th></tr>
     {{#each services}}
         <tr>
+            <td>{{this.id_service}}</td>
             <td>{{this.name_service}}</td>
             <td>{{this.price}}</td>
             <td>{{this.guarantee}}</td>
             <td>
-                <a href="/edit/{{this.id_service}}">Изменить</a>|
-                <form action="delete/{{this.id_service}}" method="POST" style="display:inline;">
-                    <input type="submit" value="Удалить" />
+                <a class='button-change' href="/edit/{{this.id_service}}">изменить</a>
+                <form action="delete/{{this.id_service}}" method="POST">
+                    <input class="delete-all" type="submit" value="удалить" />
                 </form>
             </td>
         </tr>
     {{/each}}
 </table>
+
+</main>
 </body>
 <html>

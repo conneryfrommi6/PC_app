@@ -1,6 +1,171 @@
-.main {
-    font-size: 20px;
-    background: url(../assets/images/background/white_tiles_@2X.png) repeat 100% 0;
+.main-start {
+    background: url(../assets/images/background/base_main.jpg) no-repeat 100% 0;
+    background-size: cover;
     font-family: ElMessiri-Regular, serif;
-    height: 600px;
+    font-size: 25px;
+    font-weight: bold;
+    text-align: center;
+    display: flex;
+    justify-content: center;
 }
+
+.main-start div {
+    padding-top: 91px;
+    padding-bottom: 105px;
+    padding-left: 200px;
+}
+
+.main-start div p {
+    padding: 80px;
+}
+
+
+.main-all {
+    background: rgba(197, 255, 172, 0.7) url(../assets/images/background/base_all.jpg) repeat 100% 0;
+    font-family: ElMessiri-Regular, serif;
+    font-size: 20px;
+    text-align: center;
+    padding: 50px 10px;
+}
+
+.main-start h1,
+.main-all h1 {
+    font-family: Pattaya-Regular, serif;
+    font-size: 40px;
+    color: #84251a;
+    text-align: center;
+    padding-bottom: 50px;
+}
+
+.add {
+    padding-bottom: 50px;
+    text-align: center;
+}
+
+.table-all {
+    margin: auto;
+}
+
+table tr td {
+    border: 2px #bb4258 dotted;
+    padding: 3px;
+}
+
+table td:nth-child(2) {
+    text-align: left;
+}
+
+table tr td:last-child {
+    border: none;
+}
+
+table th {
+    text-align: center;
+    padding: 8px;
+    font-weight: bold;
+}
+
+form {
+    display: inline;
+}
+
+a.button {
+    position: relative;
+    display: inline-block;
+    color: #3e4a77;
+    font-weight: bold;
+    text-shadow: rgba(255, 255, 255, .5) 1px 1px, rgba(100, 100, 100, .3) 3px 7px 3px;
+    user-select: none;
+    padding: 1em 1.7em;
+    outline: none;
+    border-radius: 3px / 100%;
+    background-image: linear-gradient(45deg, rgba(255, 255, 255, .0) 30%, rgba(255, 255, 255, .8), rgba(255, 255, 255, .0) 70%),
+    linear-gradient(to right, rgba(255, 255, 255, 1), rgba(255, 255, 255, 0) 20%, rgba(255, 255, 255, 0) 90%, rgba(255, 255, 255, .3)),
+    linear-gradient(to right, rgba(125, 125, 125, 1), rgba(255, 255, 255, .9) 45%, rgba(125, 125, 125, .5)),
+    linear-gradient(to right, rgba(125, 125, 125, 1), rgba(255, 255, 255, .9) 45%, rgba(125, 125, 125, .5)),
+    linear-gradient(to right, rgba(223, 190, 170, 1), rgba(255, 255, 255, .9) 45%, rgba(223, 190, 170, .5)),
+    linear-gradient(to right, rgba(223, 190, 170, 1), rgba(255, 255, 255, .9) 45%, rgba(223, 190, 170, .5));
+    background-repeat: no-repeat;
+    background-size: 200% 100%, auto, 100% 2px, 100% 2px, 100% 1px, 100% 1px;
+    background-position: 200% 0, 0 0, 0 0, 0 100%, 0 4px, 0 calc(100% - 4px);
+    box-shadow: rgba(0, 0, 0, .5) 3px 10px 10px -10px;
+    width: 100px;
+}
+
+a.button:hover {
+    transition: .5s linear;
+    background-position: -200% 0, 0 0, 0 0, 0 100%, 0 4px, 0 calc(100% - 4px);
+    color: #77202c;
+}
+
+a.button:active {
+    top: 2px;
+
+}
+
+a.button-add {
+    position: relative;
+    font-weight: bold;
+    color: white;
+    text-shadow: 0 -1px 1px #cc5500;
+    user-select: none;
+    padding: .5em 1em;
+    border-radius: 25px;
+    background: linear-gradient(to left, rgba(0, 0, 0, .3), rgba(0, 0, 0, .0) 50%, rgba(0, 0, 0, .3)), linear-gradient(#d72c2b, #fe8417, #d77d31);
+    background-size: 100% 100%, auto;
+    box-shadow: inset #ebab00 0 -1px 1px, inset 0 1px 1px #ffbf00, #cc7722 0 0 0 1px, #000 0 10px 15px -10px;
+    transition: 0.2s;
+}
+
+a.button-add:hover {
+    background-size: 150% 100%, auto;
+}
+
+a.button-add:active {
+    bottom: 3px;
+    color: #ffdead;
+    box-shadow: inset #ebab00 0 -1px 1px, inset 0 1px 1px #ffbf00, #cc7722 0 0 0 1px, 0 10px 10px -9px #000;
+}
+
+a.button-change {
+    display: inline-block;
+    padding: 7px 10px;
+    margin: 2px 5px;
+    border-radius: 10px;
+    box-shadow: 0 0 40px 40px #005d1e inset, 0 0 0 0 #16830f;
+    font-weight: bold;
+    letter-spacing: 1px;
+    color: white;
+    transition: .15s ease-in-out;
+    font-size: 16px;
+}
+
+a.button-change:hover {
+    box-shadow: 0 0 10px 0 #8ce58f inset, 0 0 10px 4px #138200;
+    color: #042902;
+    background: rgba(147, 242, 145, 0.7);
+}
+
+
+.delete-all {
+    display: inline-block;
+    padding: 2px 10px;
+    margin: 2px 5px;
+    border-radius: 10px;
+    box-shadow: 0 0 40px 40px #75100a inset, 0 0 0 0 #f75245;
+    font-weight: bold;
+    letter-spacing: 1px;
+    color: white;
+    transition: .15s ease-in-out;
+    font-family: ElMessiri-Regular, serif;
+    font-size: 16px;
+    outline: none;
+    border: none;
+}
+
+.delete-all:hover {
+    box-shadow: 0 0 10px 0 #fe9864 inset, 0 0 10px 4px #8c131a;
+    color: #77202c;
+    background: rgba(242, 171, 182, 0.7);
+}
+

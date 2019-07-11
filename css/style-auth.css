@@ -11,16 +11,16 @@
 .main-auth table {
     margin: auto;
     display: none;
-}
+ }
 
 .contact-form h2 {
-    color: #09042f;
+    color: rgba(212, 210, 226, 0.87);
+    font-weight: normal;
+    letter-spacing: 2px;
+    font-size: 32px;
+    text-shadow: 0 0 #042902, 0 1px #000002, 2px 0 #111111, 0 -1px #8b9177;
+    margin-bottom: 21px;
 }
-
-.contact-form li{
-    border-bottom:none;
-}
-
 
 .contact-form li:last-child {
     padding-top: 40px;
@@ -34,9 +34,4 @@
 .contact-form label {
     width: 120px;
     padding-left: 100px;
-}
-
-
-.contact-form li:first-child, .contact-form li:last-child {
-    border-bottom: none;
 }

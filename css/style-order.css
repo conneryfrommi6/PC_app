@@ -1,45 +1,42 @@
 .main-order {
-    background: url(../assets/images/background/email-pattern.png) repeat 100% 0;
-    padding: 40px;
+    background: url(../assets/images/background/order.jpg) no-repeat 100% 0;
+    background-size: cover;
+    padding: 36px;
 }
 
 .contact-form {
     margin: auto;
 }
 
-.contact-form li{
-    padding:12px;
-    border-bottom:1px solid #eee;
-}
-
-.contact-form li:first-child, .contact-form li:last-child {
-    border-bottom: 2px dotted #1b2577;
+.contact-form li {
+    padding: 12px;
 }
 
 .contact-form h2 {
     font-family: Pattaya-Regular, serif;
-    font-size: 30px;
-    color: #3c4a5a;
-    padding-bottom: 30px;
+    font-size: 40px;
+    color: #fbfdff;
+    padding-bottom: 25px;
     text-align: center;
+    letter-spacing: 1px;
 }
 
 .required_notification {
     color:#d45252;
     float:right;
     font-size: 15px;
-    padding-top: 20px;
     font-weight: 600;
 }
 
 .main-order .contact-form ul li:nth-child(2) {
-    padding-top: 60px;
+    padding-top: 40px;
 }
 
 .contact-form label {
     width:220px;
     margin-top: 10px;
     float:left;
+    font-weight: bold;
 }
 .contact-form input {
     height:20px;

@@ -1,29 +1,35 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Список клиентов</title>
+    <title>Клиенты</title>
     <meta charset="utf-8" />
+    <link rel="stylesheet"  type = "text/css" href="css/style_hbs.css">
+    <link rel="stylesheet" type = "text/css" href="css/reset.css">
+    <link rel="stylesheet" type = "text/css" href="css/fonts.css">
 </head>
-<body style="background-color: #d9f9d3">
-<h1 style="color: #1b2577; font-size: 40px; font-family: 'Monotype Corsiva',serif; text-align: center">Список клиентов</h1>
-<p><a href="/create" style="color: #771e1f; font-size: 30px">Добавить клиента</a></p>
-<table  style="margin: auto">
-    <tr><th>ФИО</th><th>Адрес</th><th>Телефон</th><th>э-мейл</th><th>Вип-статус</th></tr>
+<body>
+<main class="main-all">
+<h1>Список клиентов мастерской "Компьютерный доктор"</h1>
+    <p class="add"><a href="/create" class='button-add'>Добавить клиента</a></p>
+<table  class="table-all">
+    <tr><th>Номер</th><th>ФИО</th><th>Адрес</th><th>Телефон</th><th>э-мейл</th><th>Вип-статус</th></tr>
     {{#each clients}}
         <tr>
+            <td>{{this.id_client}}</td>
             <td>{{this.name_client}}</td>
             <td>{{this.adress}}</td>
             <td>{{this.phone}}</td>
             <td>{{this.e-mail}}</td>
             <td>{{this.vip}}</td>
             <td>
-                <a href="/edit/{{this.id_client}}">Изменить</a>|
-                <form action="delete/{{this.id_client}}" method="POST" style="display:inline;">
-                    <input type="submit" value="Удалить" />
+                <a class='button-change' href="/edit/{{this.id_client}}">изменить</a>
+                <form action="delete/{{this.id_client}}" method="POST">
+                    <input class="delete-all" type="submit" value="удалить" />
                 </form>
             </td>
         </tr>
     {{/each}}
 </table>
+</main>
 </body>
-<html>
+</html>

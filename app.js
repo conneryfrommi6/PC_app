@@ -120,6 +120,17 @@ app.get("/orders", function(req, res){
   });
 });
 
+// получение списка специализаций
+app.get("/specializations", function(req, res){
+  pool.query("SELECT * FROM specialization", function(err, data) {
+    if(err) return console.log(err);
+    res.render("specializations.hbs", {
+      specialization: data
+    });
+  });
+});
+
+
 // получение списка для авторизации
 app.get("/auth", function(req, res){
   pool.query("SELECT * FROM authorization", function(err, data) {
@@ -136,9 +147,42 @@ app.get("/", function(req, res){
 });
 
 
+// возвращаем форму для добавления данных
+app.get("/create_master", function(req, res){
+  res.render("create_master.hbs");
+});
+
+
+app.get("/create_master", function(req, res){
+  pool.query("SELECT * FROM masters", function(err, data) {
+    if(err) return console.log(err);
+    res.render("create_master.hbs", {
+      masters: data
+    });
+  });
+});
+
+// получаем отправленные данные и добавляем их в БД
+app.post("/create_master", urlencodedParser, function (req, res) {
+
+  if(!req.body) return res.sendStatus(400);
+  const name = req.body.name;
+  const address = req.body.address;
+  const phone = req.body.phone;
+  const email = req.body.email;
+  const specialization = req.body.specialization;
+
+  pool.query("INSERT INTO masters (name_master, adress, phone, email, id_specialization) VALUES (?,?,?,?,?)", [name, address, phone, email, specialization], function(err, data) {
+    if(err) return console.log(err);
+    res.redirect("/masters");
+  });
+});
+
+
+
 app.listen(3000, "127.0.0.1");
 
 app.use('/css', express.static('css'));
 app.use( '/assets', express.static('assets'));
-// app.use( '/scripts', express.static('scripts'));
+app.use( '/scripts', express.static('scripts'));
 // app.use(favicon(path.join(__dirname, 'assets', 'favicon.ico')));

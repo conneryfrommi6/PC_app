@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Специализации</title>
+    <meta charset="utf-8" />
+    <link rel="stylesheet"  type = "text/css" href="css/style_hbs.css">
+    <link rel="stylesheet" type = "text/css" href="css/reset.css">
+    <link rel="stylesheet" type = "text/css" href="css/fonts.css">
+
+</head>
+<body>
+<main class="main-all">
+    <p class="back"><a href="/" class='button-back'>Главная форма</a></p>
+    <h1>Специализации мастеров <br>мастерской "Компьютерный доктор"</h1>
+    <p class="add"><a href="/create" class='button-add'>Добавить специализацию</a></p>
+
+    <table class="table-all">
+        <tr><th>Номер</th><th>Специализация</th></tr>
+        {{#each specialization}}
+            <tr>
+                <td>{{this.id_specialization}}</td>
+                <td>{{this.specialization}}</td>
+                <td>
+                    <a class='button-change' href="/edit/{{this.id_specialization}}">изменить</a>
+                    <form action="delete/{{this.id_specialization}}" method="POST">
+                        <input class="delete-all" type="submit" value="удалить" />
+                    </form>
+                </td>
+            </tr>
+        {{/each}}
+    </table>
+
+</main>
+</body>
+</html>

@@ -5,68 +5,81 @@
     font-size: 25px;
     font-weight: bold;
     text-align: center;
+    min-height: 666px;
+}
+
+.title-logo {
     display: flex;
     justify-content: center;
 }
 
-.main-start div {
-    padding-top: 91px;
-    padding-bottom: 105px;
-    padding-left: 200px;
+.title-logo a {
+    align-self: center;
+    margin-left: 5%;
+    color: #98adbf;
+    background-color: rgba(152, 173, 191, .2);
+    padding: 17px;
+    border-radius: 15px;
+    font-size: 16px;
+
 }
 
-.main-start div p {
-    padding: 80px;
+.title-logo a:hover {
+    color: #141041;
+    background-color: rgba(152, 173, 191, .6);
 }
 
-
-.main-all {
-    background: rgba(197, 255, 172, 0.7) url(../assets/images/background/base_all.jpg) repeat 100% 0;
-    font-family: ElMessiri-Regular, serif;
-    font-size: 20px;
-    text-align: center;
-    padding: 50px 10px;
+.title-logo a:active {
+margin-top: -5px;
 }
 
-.main-start h1,
-.main-all h1 {
-    font-family: Pattaya-Regular, serif;
+.title-logo h1 {
     font-size: 40px;
-    color: #84251a;
-    text-align: center;
-    padding-bottom: 50px;
-}
-
-.add {
-    padding-bottom: 50px;
-    text-align: center;
-}
-
-.table-all {
-    margin: auto;
-}
-
-table tr td {
-    border: 2px #bb4258 dotted;
-    padding: 3px;
-}
-
-table td:nth-child(2) {
-    text-align: left;
-}
-
-table tr td:last-child {
-    border: none;
-}
-
-table th {
-    text-align: center;
-    padding: 8px;
+    padding: 55px 0;
     font-weight: bold;
+    flex-grow: 1;
+    align-self: center;
+    color: #071452;
+    margin-left: 12%;
 }
 
-form {
-    display: inline;
+.title-logo img {
+    width: 130px;
+    height: 130px;
+    padding-right: 1%;
+}
+
+.main-start .control {
+    display: flex;
+    justify-content: space-evenly;
+    margin-left: 20%;
+}
+
+.main-start .control div p {
+    padding: 4px;
+}
+
+.main-start .control div p:first-child {
+    padding-bottom: 25px;
+    font-size: 30px;
+    color: #071452;
+}
+
+.main-start .reports {
+    font-size: 21px;
+}
+
+.main-start .reports p {
+    margin-bottom: 15px;
+}
+
+.main-start .reports p:first-child {
+    margin-bottom: 0;
+}
+
+.main-start .reports p a {
+    margin-right: 5px;
+    width: 120px;
 }
 
 a.button {
@@ -95,12 +108,93 @@ a.button {
 a.button:hover {
     transition: .5s linear;
     background-position: -200% 0, 0 0, 0 0, 0 100%, 0 4px, 0 calc(100% - 4px);
-    color: #77202c;
+    color: #cd1b1b;
 }
 
 a.button:active {
     top: 2px;
 
+}
+.main-all {
+    background: rgba(197, 255, 172, 0.7) url(../assets/images/background/base_all.jpg) repeat 100% 0;
+    font-family: ElMessiri-Regular, serif;
+    font-size: 20px;
+    text-align: center;
+    padding: 50px 10px;
+    min-height: 566px;
+}
+
+.main-all h1 {
+    font-family: Pattaya-Regular, serif;
+    font-size: 40px;
+    color: #84251a;
+    text-align: center;
+    padding-bottom: 50px;
+}
+
+.back {
+    text-align: left;
+    margin-left: 5%;
+    margin-top: -20px;
+    margin-bottom: 20px;
+}
+
+a.button-back {
+    display: inline-block;
+    text-decoration: none;
+    padding: 0.5em;
+    outline: none;
+    border-radius: 1px;
+    font-weight: bold;
+    font-size: 25px;
+    color: #844a41;
+}
+
+a.button-back:hover {
+    background-image: radial-gradient(8px 45% at 0% 50%, rgba(0, 0, 0, .9), transparent),
+    radial-gradient(8px 45% at 100% 50%, rgba(0, 0, 0, .9), transparent);
+    color: #3d080a;
+    font-weight: normal;
+}
+
+a.button-back:active {
+    background-image: radial-gradient(45% 45% at 50% 100%, rgba(255, 255, 255, .9), rgba(255, 255, 255, 0)),
+    linear-gradient(rgba(255, 255, 255, .4), rgba(255, 255, 255, .3));
+    box-shadow: inset rgba(162, 95, 42, .4) 0 0 0 1px,
+    inset rgba(255, 255, 255, .9) 0 0 1px 3px;
+    border-radius: 25px;
+}
+
+
+.add {
+    padding-bottom: 50px;
+}
+
+.table-all {
+    margin: auto;
+}
+
+table tr td {
+    border: 2px #bb4258 dotted;
+    padding: 3px;
+}
+
+table td:nth-child(2) {
+    text-align: left;
+}
+
+table tr td:last-child {
+    border: none;
+}
+
+table th {
+    text-align: center;
+    padding: 8px;
+    font-weight: bold;
+}
+
+form {
+    display: inline;
 }
 
 a.button-add {

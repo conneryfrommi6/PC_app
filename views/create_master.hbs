@@ -1,19 +1,44 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Добавление пользователя</title>
-    <meta charset="utf-8" />
-    <style>.field{width:180px;}</style>
+    <title>Добавление мастера</title>
+    <link rel="stylesheet" type="text/css" href="css/style-create_hbs.css">
+    <link rel="stylesheet" type="text/css" href="css/reset.css">
+    <link rel="stylesheet" type="text/css" href="css/fonts.css">
 </head>
 <body>
-<h1>Добавление пользователя</h1>
-<form method="POST">
-    <label>Имя</label><br>
-    <input name="name" class="field"/><br><br>
-    <label>Возраст</label><br>
-    <input name="age" type="number" class="field" min="1" max="110" /><br><br>
-    <input type="submit" value="Отправить" />
-</form>
-<a href="/">К списку пользователей</a>
+<main class="main-create">
+    <h1>Добавление Мастера</h1>
+
+    <div class="links">
+        <a href="/masters" class="links-item">к списку мастеров</a>
+        <a href="/" class="links-item">на главную форму</a>
+    </div>
+    <form class='form-create' method="POST">
+        <p>
+            <label for="name" size="25">Имя</label>
+            <input name="name" id="name"/>
+        </p>
+        <p>
+            <label for="address">Адрес</label>
+            <input name="address" type="text" id="address" min="10" max="110"/>
+        </p>
+        <p>
+            <label for="phone">Телефон</label>
+            <input name="phone" type="number" id="phone" min="9" max="11"/>
+        </p>
+        <p>
+            <label for="email">Эмейл</label>
+            <input name="email" type="text" id="email" min="6" max="50"/>
+        </p>
+        <p>
+            <label for="specialization"><a href="/specializations" class ='id-link' title='Для просмотра списка специализаций пройдите по ссылке' target="_blank">Специализация</a></label>
+            <input name="specialization" type="number" id="specialization" min="1" max="2"/>
+         </p>
+        <p>
+            <input type="submit" value="Добавить" class="submit"/>
+        </p>
+    </form>
+</main>
 </body>
-<html>
+</html>

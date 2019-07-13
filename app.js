@@ -64,6 +64,16 @@ const pool = mysql.createPool({
 
 app.set("view engine", "hbs");
 
+
+// // задание формата даты
+// app.get("/orders", function (req, res) {
+//   pool.query("SELECT DATE_FORMAT(\"2008-11-19\",'%d.%m.%Y')", function (err) {
+//     if (err) {return console.log(err);}
+// console.log('Date format is Russian');
+//   });
+// });
+
+
 // получение списка услуг для веб-сайта
 app.get("/our_services", function (req, res) {
   pool.query("SELECT * FROM services", function (err, data) {
@@ -105,6 +115,12 @@ app.get("/masters", function (req, res) {
 });
 
 // получение списка заказов
+
+// pool.query("SELECT id_order, DATE_FORMAT(date_order,'%d.%m.%Y'), name_device, date_finish, paid, returned, price_final, comments, id_client, id_master, id_service FROM orders", function (err, data) {
+app.set ('/ru', function(req, res){
+  console.log('Russian now');
+});
+
 app.get("/orders", function (req, res) {
   pool.query("SELECT * FROM orders", function (err, data) {
     if (err) return console.log(err);
@@ -222,11 +238,23 @@ app.get("/create_client", function (req, res) {
 app.post("/create_client", urlencodedParser, function (req, res) {
 
   if (!req.body) return res.sendStatus(400);
+
   const name = req.body.name;
   const address = req.body.address;
   const phone = req.body.phone;
-  const email = req.body.email;
-  const vip = req.body.vip;
+   if (req.body.vip==="") {
+   var vip=0;
+  }
+   else {
+     vip = req.body.vip;
+   }
+  if (req.body.email==="") {
+    var email=" ";
+  }
+  else {
+    email = req.body.email;
+  }
+
 
   pool.query("INSERT INTO clients (name_client, adress, phone, email, vip) VALUES (?,?,?,?,?)", [name, address, phone, email, vip], function (err, data) {
     if (err) return console.log(err);
@@ -258,11 +286,76 @@ app.post("/create_service", urlencodedParser, function (req, res) {
   const price = req.body.price;
   const guarantee = req.body.guarantee;
 
-  pool.query("INSERT INTO services (name_service, price, guarantee) VALUES (?,?,?)", [name, price, guarantee], function (err, data) {
+  pool.execute("INSERT INTO services (name_service, price, guarantee) VALUES (?,?,?)", [name, price, guarantee], function (err, data) {
     if (err) return console.log(err);
     res.redirect("/services");
   });
 });
+
+
+
+
+// ///// Удаление записей //////
+
+app.post("/delete_service/:id", function(req, res){
+
+  const id = req.params.id;
+  pool.query("DELETE FROM services WHERE id_service=?", [id], function(err, data) {
+    if(err) return console.log(err);
+    res.redirect("/services");
+  });
+});
+
+app.post("/delete_master/:id", function(req, res){
+
+  const id = req.params.id;
+  pool.query("DELETE FROM masters WHERE id_master=?", [id], function(err, data) {
+    if(err) return console.log(err);
+    res.redirect("/masters");
+  });
+});
+
+app.post("/delete_client/:id", function(req, res){
+
+  const id = req.params.id;
+  pool.query("DELETE FROM clients WHERE id_client=?", [id], function(err, data) {
+    if(err) return console.log(err);
+    res.redirect("/clients");
+  });
+});
+
+app.post("/delete_spec/:id", function(req, res){
+
+  const id = req.params.id;
+  pool.query("DELETE FROM specializations WHERE id_specialization=?", [id], function(err, data) {
+    if(err) return console.log(err);
+    res.redirect("/specializations");
+  });
+});
+
+app.post("/delete_order/:id", function(req, res){
+
+  const id = req.params.id;
+  pool.query("DELETE FROM orders WHERE id_order=?", [id], function(err, data) {
+    if(err) return console.log(err);
+    res.redirect("/orders");
+  });
+});
+
+
+
+
+
+// pool.end(function(err) {
+//   if (err) {
+//     return console.log(err.message);
+//   }
+//   console.log("Pool closed");
+// });
+
+
+
+
 
 app.listen(3000, "127.0.0.1");
 

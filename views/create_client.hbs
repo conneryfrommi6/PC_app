@@ -29,11 +29,11 @@
         </p>
         <p>
             <label for="email">Эмейл</label>
-            <input name="email" type="text" id="email" pattern="[A-Za-z0-9_]{1,}@[A-Za-z]{1,}.[A-Za-z]{2,}"/>
+            <input name="email" type="text" id="email" placeholder="Может быть не заполнено" pattern="[A-Za-z0-9_]{1,}@[A-Za-z]{1,}.[A-Za-z]{2,}" minlength="5" maxlength="50"/>
         </p>
         <p>
             <label for="vip">VIP</label>
-            <input name="vip" type="number" id="vip" required min="0" max="1"/>
+            <input name="vip" type="number" placeholder="Может быть не заполнено" id="vip" min="0" max="1"/>
         </p>
         <p>
             <input type="submit" value="Добавить" class="submit"/>

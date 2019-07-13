@@ -32,6 +32,9 @@
             <td>{{this.id_service}}</td>
             <td>
                 <a class='button-change' href="/edit/{{this.id_order}}">изменить</a>
+                <form action="delete_order/{{this.id_order}}" method="POST">
+                    <input class="delete-all" type="submit" value="удалить" />
+                </form>
             </td>
         </tr>
     {{/each}}

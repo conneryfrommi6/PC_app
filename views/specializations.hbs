@@ -20,7 +20,12 @@
             <tr>
                 <td>{{this.id_specialization}}</td>
                 <td>{{this.specialization}}</td>
-                <td></td>
+                <td>
+                    <a class='button-change' href="/edit/{{this.id_master}}">изменить</a>
+                    <form action="delete_spec/{{this.id_specialization}}" method="POST">
+                        <input class="delete-all" type="submit" value="удалить" />
+                    </form>
+                </td>
             </tr>
         {{/each}}
     </table>

@@ -17,15 +17,15 @@
     <form class='form-create' method="POST">
         <p>
             <label for="name">Наименование</label>
-            <input name="name" id="name" required minlength="2"/>
+            <input name="name" type="text" id="name" required minlength="2"/>
         </p>
         <p>
             <label for="price">Цена</label>
-            <input name="price" type="number" id="price" required minlength="1"/>
+            <input name="price" type="number" id="price" required/>
         </p>
         <p>
             <label for="guarantee">Гарантия</label>
-            <input name="guarantee" type="number" id="guarantee" required minlength="1" maxlength="2"/>
+            <input name="guarantee" type="number" id="guarantee" required/>
         </p>
         <p>
             <input type="submit" value="Добавить" class="submit"/>

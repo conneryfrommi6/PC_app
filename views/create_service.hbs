@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Добавление услуги</title>
+    <link rel="stylesheet" type="text/css" href="css/style-create_hbs.css">
+    <link rel="stylesheet" type="text/css" href="css/reset.css">
+    <link rel="stylesheet" type="text/css" href="css/fonts.css">
+</head>
+<body>
+<main class="main-create">
+    <h1>Добавление Услуги</h1>
+
+    <div class="links">
+        <a href="/services" class="links-item">список услуг</a>
+        <a href="/" class="links-item">главная форма</a>
+    </div>
+    <form class='form-create' method="POST">
+        <p>
+            <label for="name">Наименование</label>
+            <input name="name" id="name" required minlength="2"/>
+        </p>
+        <p>
+            <label for="price">Цена</label>
+            <input name="price" type="number" id="price" required minlength="1"/>
+        </p>
+        <p>
+            <label for="guarantee">Гарантия</label>
+            <input name="guarantee" type="number" id="guarantee" required minlength="1" maxlength="2"/>
+        </p>
+        <p>
+            <input type="submit" value="Добавить" class="submit"/>
+        </p>
+    </form>
+</main>
+</body>
+</html>

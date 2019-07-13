@@ -234,7 +234,35 @@ app.post("/create_client", urlencodedParser, function (req, res) {
   });
 });
 
+// ////// Добавление услуги ////////////////
 
+// возвращаем форму для добавления данных
+app.get("/create_service", function (req, res) {
+  res.render("create_service.hbs");
+});
+
+app.get("/create_service", function (req, res) {
+  pool.query("SELECT * FROM services", function (err, data) {
+    if (err) return console.log(err);
+    res.render("create_service.hbs", {
+      services: data
+    });
+  });
+});
+
+// получаем отправленные данные и добавляем их в БД
+app.post("/create_service", urlencodedParser, function (req, res) {
+
+  if (!req.body) return res.sendStatus(400);
+  const name = req.body.name;
+  const price = req.body.price;
+  const guarantee = req.body.guarantee;
+
+  pool.query("INSERT INTO services (name_service, price, guarantee) VALUES (?,?,?)", [name, price, guarantee], function (err, data) {
+    if (err) return console.log(err);
+    res.redirect("/services");
+  });
+});
 
 app.listen(3000, "127.0.0.1");
 

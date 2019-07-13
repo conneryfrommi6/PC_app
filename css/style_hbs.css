@@ -126,17 +126,17 @@ a.button:active {
 
 .main-all h1 {
     font-family: Pattaya-Regular, serif;
-    font-size: 40px;
+    font-size: 35px;
     color: #84251a;
     text-align: center;
-    padding-bottom: 50px;
+    padding-bottom: 45px;
 }
 
 .back {
     text-align: left;
     margin-left: 5%;
     margin-top: -20px;
-    margin-bottom: 20px;
+    margin-bottom: 5px;
 }
 
 a.button-back {
@@ -163,11 +163,6 @@ a.button-back:active {
     box-shadow: inset rgba(162, 95, 42, .4) 0 0 0 1px,
     inset rgba(255, 255, 255, .9) 0 0 1px 3px;
     border-radius: 25px;
-}
-
-
-.add {
-    padding-bottom: 50px;
 }
 
 .table-all {
@@ -197,13 +192,17 @@ form {
     display: inline;
 }
 
+.add {
+    padding-bottom: 50px;
+}
+
 a.button-add {
     position: relative;
     font-weight: bold;
     color: white;
     text-shadow: 0 -1px 1px #cc5500;
     user-select: none;
-    padding: .5em 1em;
+    padding: .2em 0.8em;
     border-radius: 25px;
     background: linear-gradient(to left, rgba(0, 0, 0, .3), rgba(0, 0, 0, .0) 50%, rgba(0, 0, 0, .3)), linear-gradient(#d72c2b, #fe8417, #d77d31);
     background-size: 100% 100%, auto;

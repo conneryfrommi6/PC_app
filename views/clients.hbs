@@ -10,10 +10,10 @@
 <body>
 <main class="main-all">
     <p class="back"><a href="/" class='button-back'>Главная форма</a></p>
-<h1>Список клиентов мастерской "Компьютерный доктор"</h1>
-    <p class="add"><a href="/create" class='button-add'>Добавить клиента</a></p>
+<h1>Клиенты мастерской "Компьютерный доктор"</h1>
+    <p class="add"><a href="/create" class='button-add'>Добавить</a></p>
 <table  class="table-all">
-    <tr><th>Номер</th><th>ФИО</th><th>Адрес</th><th>Телефон</th><th>э-мейл</th><th>Вип-статус</th></tr>
+    <tr><th>Код</th><th>ФИО</th><th>Адрес</th><th>Телефон</th><th>э-мейл</th><th>Вип</th></tr>
     {{#each clients}}
         <tr>
             <td>{{this.id_client}}</td>
@@ -24,9 +24,6 @@
             <td>{{this.vip}}</td>
             <td>
                 <a class='button-change' href="/edit/{{this.id_client}}">изменить</a>
-                <form action="delete/{{this.id_client}}" method="POST">
-                    <input class="delete-all" type="submit" value="удалить" />
-                </form>
             </td>
         </tr>
     {{/each}}

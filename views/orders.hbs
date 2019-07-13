@@ -10,11 +10,11 @@
 <body>
 <main class="main-all">
     <p class="back"><a href="/" class='button-back'>Главная форма</a></p>
-<h1>Список заказов мастерской "Компьютерный доктор"</h1>
-<p class="add"><a href="/create" class='button-add'>Добавить заказ</a></p>
+<h1>Заказы мастерской "Компьютерный доктор"</h1>
+<p class="add"><a href="/create" class='button-add'>Добавить</a></p>
 
 <table class="table-all">
-    <tr><th>Номер</th><th>дата заказа</th><th>Техника</th><th>дата выполнения</th><th>Оплачено</th>
+    <tr><th>Номер</th><th>Дата заказа</th><th>Техника</th><th>Дата выполнения</th><th>Оплачено</th>
         <th>Выдано</th><th>К оплате</th><th>Комметарии</th><th>Код клиента</th>
         <th>Код мастера</th><th>Код услуги</th></tr>
     {{#each orders}}
@@ -32,9 +32,6 @@
             <td>{{this.id_service}}</td>
             <td>
                 <a class='button-change' href="/edit/{{this.id_order}}">изменить</a>
-                <form action="delete/{{this.id_order}}" method="POST">
-                    <input class="delete-all" type="submit" value="удалить" />
-                </form>
             </td>
         </tr>
     {{/each}}

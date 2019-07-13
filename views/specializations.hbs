@@ -11,21 +11,16 @@
 <body>
 <main class="main-all">
     <p class="back"><a href="/" class='button-back'>Главная форма</a></p>
-    <h1>Специализации мастеров <br>мастерской "Компьютерный доктор"</h1>
-    <p class="add"><a href="/create" class='button-add'>Добавить специализацию</a></p>
+    <h1>Участки мастерской "Компьютерный доктор"</h1>
+    <p class="add"><a href="/create" class='button-add'>Добавить</a></p>
 
     <table class="table-all">
-        <tr><th>Номер</th><th>Специализация</th></tr>
+        <tr><th>Код</th><th>Специализация</th></tr>
         {{#each specialization}}
             <tr>
                 <td>{{this.id_specialization}}</td>
                 <td>{{this.specialization}}</td>
-                <td>
-                    <a class='button-change' href="/edit/{{this.id_specialization}}">изменить</a>
-                    <form action="delete/{{this.id_specialization}}" method="POST">
-                        <input class="delete-all" type="submit" value="удалить" />
-                    </form>
-                </td>
+                <td></td>
             </tr>
         {{/each}}
     </table>

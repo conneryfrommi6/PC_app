@@ -12,11 +12,11 @@
 <main class="main-all">
     <p class="back"><a href="/" class='button-back'>Главная форма</a></p>
     <h1>Участки мастерской "Компьютерный доктор"</h1>
-    <p class="add"><a href="/create" class='button-add'>Добавить</a></p>
+    <p class="add"><a href="/create_specialization" class='button-add'>Добавить</a></p>
 
     <table class="table-all">
         <tr><th>Код</th><th>Специализация</th></tr>
-        {{#each specialization}}
+        {{#each specializations}}
             <tr>
                 <td>{{this.id_specialization}}</td>
                 <td>{{this.specialization}}</td>

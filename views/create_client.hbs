@@ -17,23 +17,23 @@
     <form class='form-create' method="POST">
         <p>
             <label for="name">ФИО</label>
-            <input name="name" id="name"/>
+            <input name="name" id="name" required minlength="10"/>
         </p>
         <p>
             <label for="address">Адрес</label>
-            <input name="address" type="text" id="address" min="10" max="110"/>
+            <input name="address" type="text" id="address" required minlength="10"/>
         </p>
         <p>
             <label for="phone">Телефон</label>
-            <input name="phone" type="number" id="phone" min="9" max="11"/>
+            <input name="phone" type="text" id="phone" required pattern="80(29|44)[0-9]{7}"/>
         </p>
         <p>
             <label for="email">Эмейл</label>
-            <input name="email" type="text" id="email" min="6" max="50"/>
+            <input name="email" type="text" id="email" pattern="[A-Za-z0-9_]{1,}@[A-Za-z]{1,}.[A-Za-z]{2,}"/>
         </p>
         <p>
             <label for="vip">VIP</label>
-            <input name="vip" type="number" id="vip" min="1" max="2"/>
+            <input name="vip" type="number" id="vip" required min="0" max="1"/>
         </p>
         <p>
             <input type="submit" value="Добавить" class="submit"/>

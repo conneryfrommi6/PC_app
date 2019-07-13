@@ -36,8 +36,13 @@
 //   console.log("Подключение закрыто");
 // });
 
+// import {runServer} from "/scripts/server";
+// import * as app from "express";
+// runServer();
 
-
+// import {createSpecialization} from "/scripts/specialization_create";
+// createSpecialization();
+//
 const mysql = require("mysql2");
 const express = require("express");
 const bodyParser = require("body-parser");
@@ -57,23 +62,12 @@ const pool = mysql.createPool({
   password: ""
 });
 
-
-// // // тестирование подключения
-// connection.connect(function (err) {
-//   if (err) {
-//     return console.error("Ошибка: " + err.message);
-//   } else {
-//     console.log("Подключение к серверу MySQL успешно установлено");
-//   }
-// });
-
 app.set("view engine", "hbs");
 
-
 // получение списка услуг для веб-сайта
-app.get("/our_services", function(req, res){
-  pool.query("SELECT * FROM services", function(err, data) {
-    if(err) return console.log(err);
+app.get("/our_services", function (req, res) {
+  pool.query("SELECT * FROM services", function (err, data) {
+    if (err) return console.log(err);
     res.render("services_website.hbs", {
       services: data
     });
@@ -81,9 +75,9 @@ app.get("/our_services", function(req, res){
 });
 
 // получение списка услуг
-app.get("/services", function(req, res){
-  pool.query("SELECT * FROM services", function(err, data) {
-    if(err) return console.log(err);
+app.get("/services", function (req, res) {
+  pool.query("SELECT * FROM services", function (err, data) {
+    if (err) return console.log(err);
     res.render("services.hbs", {
       services: data
     });
@@ -91,9 +85,9 @@ app.get("/services", function(req, res){
 });
 
 // получение списка клиентов
-app.get("/clients", function(req, res){
-  pool.query("SELECT * FROM clients", function(err, data) {
-    if(err) return console.log(err);
+app.get("/clients", function (req, res) {
+  pool.query("SELECT * FROM clients", function (err, data) {
+    if (err) return console.log(err);
     res.render("clients.hbs", {
       clients: data
     });
@@ -101,9 +95,9 @@ app.get("/clients", function(req, res){
 });
 
 // получение списка мастеров
-app.get("/masters", function(req, res){
-  pool.query("SELECT * FROM masters", function(err, data) {
-    if(err) return console.log(err);
+app.get("/masters", function (req, res) {
+  pool.query("SELECT * FROM masters", function (err, data) {
+    if (err) return console.log(err);
     res.render("masters.hbs", {
       masters: data
     });
@@ -111,9 +105,9 @@ app.get("/masters", function(req, res){
 });
 
 // получение списка заказов
-app.get("/orders", function(req, res){
-  pool.query("SELECT * FROM orders", function(err, data) {
-    if(err) return console.log(err);
+app.get("/orders", function (req, res) {
+  pool.query("SELECT * FROM orders", function (err, data) {
+    if (err) return console.log(err);
     res.render("orders.hbs", {
       orders: data
     });
@@ -121,20 +115,20 @@ app.get("/orders", function(req, res){
 });
 
 // получение списка специализаций
-app.get("/specializations", function(req, res){
-  pool.query("SELECT * FROM specialization", function(err, data) {
-    if(err) return console.log(err);
+app.get("/specializations", function (req, res) {
+  pool.query("SELECT * FROM specializations", function (err, data) {
+    if (err) return console.log(err);
     res.render("specializations.hbs", {
-      specialization: data
+      specializations: data
     });
   });
 });
 
 
 // получение списка для авторизации
-app.get("/auth", function(req, res){
-  pool.query("SELECT * FROM authorization", function(err, data) {
-    if(err) return console.log(err);
+app.get("/auth", function (req, res) {
+  pool.query("SELECT * FROM authorization", function (err, data) {
+    if (err) return console.log(err);
     res.render("auth.hbs", {
       authorization: data
     });
@@ -142,20 +136,21 @@ app.get("/auth", function(req, res){
 });
 
 // переход на общую страницу для работы с базой
-app.get("/", function(req, res){
-      res.render("index.hbs")
+app.get("/", function (req, res) {
+  res.render("index.hbs")
 });
 
 
+// ////// Добавление мастера ////////////////
+
 // возвращаем форму для добавления данных
-app.get("/create_master", function(req, res){
+app.get("/create_master", function (req, res) {
   res.render("create_master.hbs");
 });
 
-
-app.get("/create_master", function(req, res){
-  pool.query("SELECT * FROM masters", function(err, data) {
-    if(err) return console.log(err);
+app.get("/create_master", function (req, res) {
+  pool.query("SELECT * FROM masters", function (err, data) {
+    if (err) return console.log(err);
     res.render("create_master.hbs", {
       masters: data
     });
@@ -165,16 +160,77 @@ app.get("/create_master", function(req, res){
 // получаем отправленные данные и добавляем их в БД
 app.post("/create_master", urlencodedParser, function (req, res) {
 
-  if(!req.body) return res.sendStatus(400);
+  if (!req.body) return res.sendStatus(400);
   const name = req.body.name;
   const address = req.body.address;
   const phone = req.body.phone;
   const email = req.body.email;
   const specialization = req.body.specialization;
 
-  pool.query("INSERT INTO masters (name_master, adress, phone, email, id_specialization) VALUES (?,?,?,?,?)", [name, address, phone, email, specialization], function(err, data) {
-    if(err) return console.log(err);
+  pool.query("INSERT INTO masters (name_master, adress, phone, email, id_specialization) VALUES (?,?,?,?,?)", [name, address, phone, email, specialization], function (err, data) {
+    if (err) return console.log(err);
     res.redirect("/masters");
+  });
+});
+
+// ////// Добавление специализации ////////////////
+
+// возвращаем форму для добавления данных
+app.get("/create_specialization", function (req, res) {
+  res.render("create_spec.hbs");
+});
+
+app.get("/create_specialization", function (req, res) {
+  pool.query("SELECT * FROM specializations", function (err, data) {
+    if (err) return console.log(err);
+    res.render("create_spec.hbs", {
+      specializations: data
+    });
+  });
+});
+
+// получаем отправленные данные и добавляем их в БД
+app.post("/create_specialization", urlencodedParser, function (req, res) {
+
+  if (!req.body) return res.sendStatus(400);
+  const name = req.body.name;
+
+  pool.query("INSERT INTO specializations (specialization) VALUES (?)", [name], function (err, data) {
+    if (err) return console.log(err);
+    res.redirect("/specializations");
+  });
+});
+
+
+// ////// Добавление клиента ////////////////
+
+// возвращаем форму для добавления данных
+app.get("/create_client", function (req, res) {
+  res.render("create_client.hbs");
+});
+
+app.get("/create_client", function (req, res) {
+  pool.query("SELECT * FROM clients", function (err, data) {
+    if (err) return console.log(err);
+    res.render("create_client.hbs", {
+      clients: data
+    });
+  });
+});
+
+// получаем отправленные данные и добавляем их в БД
+app.post("/create_client", urlencodedParser, function (req, res) {
+
+  if (!req.body) return res.sendStatus(400);
+  const name = req.body.name;
+  const address = req.body.address;
+  const phone = req.body.phone;
+  const email = req.body.email;
+  const vip = req.body.vip;
+
+  pool.query("INSERT INTO clients (name_client, adress, phone, email, vip) VALUES (?,?,?,?,?)", [name, address, phone, email, vip], function (err, data) {
+    if (err) return console.log(err);
+    res.redirect("/clients");
   });
 });
 
@@ -183,6 +239,6 @@ app.post("/create_master", urlencodedParser, function (req, res) {
 app.listen(3000, "127.0.0.1");
 
 app.use('/css', express.static('css'));
-app.use( '/assets', express.static('assets'));
-app.use( '/scripts', express.static('scripts'));
+app.use('/assets', express.static('assets'));
+app.use('/scripts', express.static('scripts'));
 // app.use(favicon(path.join(__dirname, 'assets', 'favicon.ico')));

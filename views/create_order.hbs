@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Добавление заказа</title>
+    <link rel="stylesheet" type="text/css" href="css/style-create_hbs.css">
+    <link rel="stylesheet" type="text/css" href="css/reset.css">
+    <link rel="stylesheet" type="text/css" href="css/fonts.css">
+</head>
+<body>
+<main class="main-create">
+    <h1>Добавление Заказа</h1>
+
+    <div class="links">
+        <a href="/orders" class="links-item">список заказов</a>
+        <a href="/" class="links-item">главная форма</a>
+    </div>
+    <form class='form-create' method="POST">
+        <p>
+            <label for="date_order">Дата заказа</label>
+            <input name="date_order" id="date_order" type="date" required/>
+        </p>
+        <p>
+            <label for="name">Техника</label>
+            <input name="name" id="name" required minlength="3"/>
+        </p>
+        <p>
+            <label for="comments">Комментарии</label>
+            <input name="comments" type="text" id="comments" placeholder="Может быть пустым"/>
+        </p>
+        <p>
+            <label for="client"><a href="/clients" class ='id-link' title='Для просмотра списка клиентов пройдите по ссылке' target="_blank">Клиент</a></label>
+            <input name="client" type="number" id="client" placeholder="Код" required minlength="1" maxlength="1"/>
+        </p>
+        <p>
+            <label for="master"><a href="/masters" class ='id-link' title='Для просмотра списка мастеров пройдите по ссылке' target="_blank">Мастер</a></label>
+            <input name="master" type="number" id="master" placeholder="Код" required minlength="1" maxlength="1"/>
+        </p>
+        <p>
+            <label for="service"><a href="/services" class ='id-link' title='Для просмотра списка услуг пройдите по ссылке' target="_blank">Услуга</a></label>
+            <input name="service" type="number" id="service" placeholder="Код" required minlength="1" maxlength="1"/>
+        </p>
+        <p>
+            <input type="submit" value="Добавить" class="submit"/>
+        </p>
+    </form>
+</main>
+</body>
+</html>

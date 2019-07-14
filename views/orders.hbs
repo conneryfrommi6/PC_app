@@ -11,12 +11,12 @@
 <main class="main-all">
     <p class="back"><a href="/" class='button-back'>Главная форма</a></p>
 <h1>Заказы мастерской "Компьютерный доктор"</h1>
-<p class="add"><a href="/create" class='button-add'>Добавить</a></p>
+<p class="add"><a href="/create_order" class='button-add'>Добавить</a></p>
 
 <table class="table-all">
     <tr><th>Номер</th><th>Дата заказа</th><th>Техника</th><th>Дата выполнения</th><th>Оплачено</th>
-        <th>Выдано</th><th>К оплате</th><th>Комметарии</th><th>Код клиента</th>
-        <th>Код мастера</th><th>Код услуги</th></tr>
+        <th>Выдано</th><th>К оплате</th><th>Комметарии</th><th>Код кл.</th>
+        <th>Код мас.</th><th>Код усл.</th></tr>
     {{#each orders}}
         <tr>
             <td>{{this.id_order}}</td>

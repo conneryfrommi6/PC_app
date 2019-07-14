@@ -292,7 +292,44 @@ app.post("/create_service", urlencodedParser, function (req, res) {
   });
 });
 
+/ ////// Добавление заказа ////////////////
 
+// возвращаем форму для добавления данных
+app.get("/create_order", function (req, res) {
+  res.render("create_order.hbs");
+});
+
+app.get("/create_order", function (req, res) {
+  pool.query("SELECT * FROM orders", function (err, data) {
+    if (err) return console.log(err);
+    res.render("create_order.hbs", {
+      orders: data
+    });
+  });
+});
+
+// получаем отправленные данные и добавляем их в БД
+app.post("/create_order", urlencodedParser, function (req, res) {
+
+  if (!req.body) return res.sendStatus(400);
+  const date_order = req.body.date_order;
+  const name = req.body.name;
+  const client = req.body.client;
+  const master = req.body.master;
+  const service = req.body.service;
+
+  if (req.body.comments==="") {
+    var comments=" ";
+  }
+  else {
+    comments = req.body.comments;
+  }
+
+  pool.execute("INSERT INTO orders (date_order, name_device, comments, id_client, id_master, id_service) VALUES (?,?,?,?,?,?)", [date_order, name, comments, client, master, service], function (err, data) {
+    if (err) return console.log(err);
+    res.redirect("/orders");
+  });
+});
 
 
 // ///// Удаление записей //////

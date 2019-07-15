@@ -2,35 +2,42 @@
 <html>
 <head>
     <title>Услуги</title>
-    <meta charset="utf-8" />
-    <link rel="stylesheet"  type = "text/css" href="css/style_hbs.css">
-    <link rel="stylesheet" type = "text/css" href="css/reset.css">
-    <link rel="stylesheet" type = "text/css" href="css/fonts.css">
+    <meta charset="utf-8"/>
+    <link rel="stylesheet" type="text/css" href="css/style_hbs.css">
+    <link rel="stylesheet" type="text/css" href="css/reset.css">
+    <link rel="stylesheet" type="text/css" href="css/fonts.css">
 
 </head>
 <body>
 <main class="main-all">
     <p class="back"><a href="/" class='button-back'>Главная форма</a></p>
-<h1>Услуги мастерской "Компьютерный доктор"</h1>
-<p class="add"><a href="/create_service" class='button-add'>Добавить</a></p>
+    <h1>Услуги мастерской "Компьютерный доктор"</h1>
+    <p class="add"><a href="/create_service" class='button-add'>Добавить</a></p>
 
-<table class="table-all">
-    <tr><th>Код</th><th>Услуга</th><th>Цена (бел.р.)</th><th>Гарантия (мес.)</th></tr>
-    {{#each services}}
+    <table class="table-all">
         <tr>
-            <td>{{this.id_service}}</td>
-            <td>{{this.name_service}}</td>
-            <td>{{this.price}}</td>
-            <td>{{this.guarantee}}</td>
-            <td>
-                <a class='button-change' href="/edit/{{this.id_service}}">изменить</a>
-                <form action="delete_service/{{this.id_service}}" method="POST">
-                    <input class="delete-all" type="submit" value="удалить" />
-                </form>
-            </td>
+            <th>Код</th>
+            <th>Услуга</th>
+            <th>Цена (бел.р.)</th>
+            <th>Гарантия (мес.)</th>
         </tr>
-    {{/each}}
-</table>
+        {{#each services}}
+            <tr>
+                <td>{{this.id_service}}</td>
+                <td>{{this.name_service}}</td>
+                <td>{{this.price}}</td>
+                <td>{{this.guarantee}}</td>
+                <td>
+                    <p><a class='button-change' href="/edit/{{this.id_service}}">изменить</a></p>
+                    <div>
+                        <form action="delete_service/{{this.id_service}}" method="POST">
+                            <input class="delete-all" type="submit" value="удалить"/>
+                        </form>
+                    </div>
+                </td>
+            </tr>
+        {{/each}}
+    </table>
 
 </main>
 </body>

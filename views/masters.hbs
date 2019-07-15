@@ -13,7 +13,8 @@
 <h1>Мастера мастерской "Компьютерный доктор"</h1>
     <p class="add"><a href="/create_master" class='button-add'>Добавить</a></p>
 <table class="table-all">
-    <tr><th>Код</th><th>ФИО</th><th>Адрес</th><th>Телефон</th><th>Э-мейл</th><th>Код спец.</th></tr>
+    <tr><th>Код</th><th>ФИО</th><th>Адрес</th><th>Телефон</th><th>Э-мейл</th>
+        <th>Специализация</th></tr>
     {{#each masters}}
         <tr>
             <td>{{this.id_master}}</td>
@@ -21,12 +22,13 @@
             <td>{{this.adress}}</td>
             <td>{{this.phone}}</td>
             <td>{{this.email}}</td>
-            <td>{{this.id_specialization}}</td>
+            <td>{{this.specialization}}</td>
             <td>
-                <a class='button-change' href="/edit/{{this.id_master}}">изменить</a>
-                <form action="delete_master/{{this.id_master}}" method="POST">
+             <p>  <a class='button-change' href="/edit_master/{{this.id_master}}">изменить</a></p>
+                <div>     <form action="delete_master/{{this.id_master}}" method="POST">
                     <input class="delete-all" type="submit" value="удалить" />
                 </form>
+                </div>
             </td>
         </tr>
     {{/each}}

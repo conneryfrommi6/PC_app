@@ -2,10 +2,10 @@
 <html>
 <head>
     <title>Специализации</title>
-    <meta charset="utf-8" />
-    <link rel="stylesheet"  type = "text/css" href="css/style_hbs.css">
-    <link rel="stylesheet" type = "text/css" href="css/reset.css">
-    <link rel="stylesheet" type = "text/css" href="css/fonts.css">
+    <meta charset="utf-8"/>
+    <link rel="stylesheet" type="text/css" href="css/style_hbs.css">
+    <link rel="stylesheet" type="text/css" href="css/reset.css">
+    <link rel="stylesheet" type="text/css" href="css/fonts.css">
 
 </head>
 <body>
@@ -15,16 +15,21 @@
     <p class="add"><a href="/create_specialization" class='button-add'>Добавить</a></p>
 
     <table class="table-all">
-        <tr><th>Код</th><th>Специализация</th></tr>
+        <tr>
+            <th>Код</th>
+            <th>Специализация</th>
+        </tr>
         {{#each specializations}}
             <tr>
                 <td>{{this.id_specialization}}</td>
                 <td>{{this.specialization}}</td>
                 <td>
-                    <a class='button-change' href="/edit/{{this.id_master}}">изменить</a>
-                    <form action="delete_spec/{{this.id_specialization}}" method="POST">
-                        <input class="delete-all" type="submit" value="удалить" />
-                    </form>
+                    <p><a class='button-change' href="/edit_spec/{{this.id_specialization}}">изменить</a></p>
+                    <div>
+                        <form action="delete_spec/{{this.id_specialization}}" method="POST">
+                            <input class="delete-all" type="submit" value="удалить"/>
+                        </form>
+                    </div>
                 </td>
             </tr>
         {{/each}}

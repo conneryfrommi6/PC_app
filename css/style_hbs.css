@@ -166,16 +166,21 @@ a.button-back:active {
 }
 
 .table-all {
-    margin: auto;
+    margin:auto;
+    font-weight: bold;
+    font-size: 18px;
 }
 
 table tr td {
     border: 2px #bb4258 dotted;
     padding: 3px;
+    text-align: left;
+    vertical-align : middle;
 }
 
-table td:nth-child(2) {
-    text-align: left;
+table tr td:first-child,
+table tr td:last-child {
+    text-align: center;
 }
 
 table tr td:last-child {
@@ -185,7 +190,9 @@ table tr td:last-child {
 table th {
     text-align: center;
     padding: 8px;
-    font-weight: bold;
+    color: #1f0404;
+    font-size: 19px;
+    vertical-align : middle;
 }
 
 form {

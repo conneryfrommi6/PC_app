@@ -2,35 +2,44 @@
 <html>
 <head>
     <title>Клиенты</title>
-    <meta charset="utf-8" />
-    <link rel="stylesheet"  type = "text/css" href="css/style_hbs.css">
-    <link rel="stylesheet" type = "text/css" href="css/reset.css">
-    <link rel="stylesheet" type = "text/css" href="css/fonts.css">
+    <meta charset="utf-8"/>
+    <link rel="stylesheet" type="text/css" href="css/style_hbs.css">
+    <link rel="stylesheet" type="text/css" href="css/reset.css">
+    <link rel="stylesheet" type="text/css" href="css/fonts.css">
 </head>
 <body>
 <main class="main-all">
     <p class="back"><a href="/" class='button-back'>Главная форма</a></p>
-<h1>Клиенты мастерской "Компьютерный доктор"</h1>
+    <h1>Клиенты мастерской "Компьютерный доктор"</h1>
     <p class="add"><a href="/create_client" class='button-add'>Добавить</a></p>
-<table  class="table-all">
-    <tr><th>Код</th><th>ФИО</th><th>Адрес</th><th>Телефон</th><th>э-мейл</th><th>Вип</th></tr>
-    {{#each clients}}
+    <table class="table-all">
         <tr>
-            <td>{{this.id_client}}</td>
-            <td>{{this.name_client}}</td>
-            <td>{{this.adress}}</td>
-            <td>{{this.phone}}</td>
-            <td>{{this.email}}</td>
-            <td>{{this.vip}}</td>
-            <td>
-                <a class='button-change' href="/edit/{{this.id_client}}">изменить</a>
-                <form action="delete_client/{{this.id_client}}" method="POST">
-                    <input class="delete-all" type="submit" value="удалить" />
-                </form>
-            </td>
+            <th>Код</th>
+            <th>ФИО</th>
+            <th>Адрес</th>
+            <th>Телефон</th>
+            <th>э-мейл</th>
+            <th>Вип</th>
         </tr>
-    {{/each}}
-</table>
+        {{#each clients}}
+            <tr>
+                <td>{{this.id_client}}</td>
+                <td>{{this.name_client}}</td>
+                <td>{{this.adress}}</td>
+                <td>{{this.phone}}</td>
+                <td>{{this.email}}</td>
+                <td>{{this.vip}}</td>
+                <td>
+                    <p><a class='button-change' href="/edit/{{this.id_client}}">изменить</a></p>
+                    <div>
+                        <form action="delete_client/{{this.id_client}}" method="POST">
+                            <input class="delete-all" type="submit" value="удалить"/>
+                        </form>
+                    </div>
+                </td>
+            </tr>
+        {{/each}}
+    </table>
 </main>
 </body>
 </html>

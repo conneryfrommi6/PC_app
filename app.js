@@ -65,15 +65,6 @@ const pool = mysql.createPool({
 app.set("view engine", "hbs");
 
 
-// // задание формата даты
-// app.get("/orders", function (req, res) {
-//   pool.query("SELECT DATE_FORMAT(\"2008-11-19\",'%d.%m.%Y')", function (err) {
-//     if (err) {return console.log(err);}
-// console.log('Date format is Russian');
-//   });
-// });
-
-
 // получение списка услуг для веб-сайта
 app.get("/our_services", function (req, res) {
   pool.query("SELECT * FROM services", function (err, data) {
@@ -96,8 +87,14 @@ app.get("/services", function (req, res) {
 
 // получение списка клиентов
 app.get("/clients", function (req, res) {
-  pool.query("SELECT * FROM clients", function (err, data) {
+  pool.query("SELECT * FROM clients ORDER BY name_client", function (err, data) {
     if (err) return console.log(err);
+
+    //меняем формат логического поля на человеческий
+    data.forEach(function (element) {
+      element.vip = element.vip ? "VIP" : "-";
+    });
+
     res.render("clients.hbs", {
       clients: data
     });
@@ -106,7 +103,7 @@ app.get("/clients", function (req, res) {
 
 // получение списка мастеров
 app.get("/masters", function (req, res) {
-  pool.query("SELECT * FROM masters", function (err, data) {
+  pool.query("SELECT *, specializations.specialization FROM masters JOIN specializations on specializations.id_specialization=masters.id_specialization ORDER BY name_master", function (err, data) {
     if (err) return console.log(err);
     res.render("masters.hbs", {
       masters: data
@@ -116,18 +113,38 @@ app.get("/masters", function (req, res) {
 
 // получение списка заказов
 
-// pool.query("SELECT id_order, DATE_FORMAT(date_order,'%d.%m.%Y'), name_device, date_finish, paid, returned, price_final, comments, id_client, id_master, id_service FROM orders", function (err, data) {
-app.set ('/ru', function(req, res){
-  console.log('Russian now');
-});
-
 app.get("/orders", function (req, res) {
-  pool.query("SELECT * FROM orders", function (err, data) {
+  pool.query("SELECT orders.id_order, orders.date_order, orders.name_device, orders.date_finish, orders.paid, orders.returned, orders.price_final, orders.comments, clients.name_client, services.name_service, masters.name_master FROM orders JOIN clients on clients.id_client=orders.id_client JOIN masters on masters.id_master=orders.id_master JOIN services on services.id_service=orders.id_service ORDER BY orders.id_order DESC", function (err, data) {
     if (err) return console.log(err);
+    //console.log(data[0].date_order instanceof Date);
+    // console.log(data[20]);
+
+
+    // //////настройка вывода отображения данных //////////
+
+    //меняем формат даты на человеческий
+    data.forEach(function (element) {
+      const dateOrder = new Date(element.date_order);
+      const dateFin = new Date(element.date_finish);
+
+      element.date_order = (("0" + dateOrder.getDate()).slice(-2)) + '.' + (("0" + (dateOrder.getMonth() + 1)).slice(-2)) + '.' + dateOrder.getFullYear();
+
+      if (element.date_finish != null) {
+        element.date_finish = (("0" + dateFin.getDate()).slice(-2)) + '.' + (("0" + (dateFin.getMonth() + 1)).slice(-2)) + '.' + dateFin.getFullYear();
+      } else {
+        element.date_finish = null;
+      }
+
+      //меняем формат логических полей на человеческий
+      element.paid = element.paid ? "Да" : "Нет";
+      element.returned = element.returned ? "Да" : "Нет";
+    });
+
     res.render("orders.hbs", {
       orders: data
     });
   });
+
 });
 
 // получение списка специализаций
@@ -242,16 +259,14 @@ app.post("/create_client", urlencodedParser, function (req, res) {
   const name = req.body.name;
   const address = req.body.address;
   const phone = req.body.phone;
-   if (req.body.vip==="") {
-   var vip=0;
+  if (req.body.vip === "") {
+    var vip = 0;
+  } else {
+    vip = req.body.vip;
   }
-   else {
-     vip = req.body.vip;
-   }
-  if (req.body.email==="") {
-    var email=" ";
-  }
-  else {
+  if (req.body.email === "") {
+    var email = " ";
+  } else {
     email = req.body.email;
   }
 
@@ -318,10 +333,9 @@ app.post("/create_order", urlencodedParser, function (req, res) {
   const master = req.body.master;
   const service = req.body.service;
 
-  if (req.body.comments==="") {
-    var comments=" ";
-  }
-  else {
+  if (req.body.comments === "") {
+    var comments = " ";
+  } else {
     comments = req.body.comments;
   }
 
@@ -334,53 +348,76 @@ app.post("/create_order", urlencodedParser, function (req, res) {
 
 // ///// Удаление записей //////
 
-app.post("/delete_service/:id", function(req, res){
+app.post("/delete_service/:id", function (req, res) {
 
   const id = req.params.id;
-  pool.query("DELETE FROM services WHERE id_service=?", [id], function(err, data) {
-    if(err) return console.log(err);
+  pool.query("DELETE FROM services WHERE id_service=?", [id], function (err, data) {
+    if (err) return console.log(err);
     res.redirect("/services");
   });
 });
 
-app.post("/delete_master/:id", function(req, res){
+app.post("/delete_master/:id", function (req, res) {
 
   const id = req.params.id;
-  pool.query("DELETE FROM masters WHERE id_master=?", [id], function(err, data) {
-    if(err) return console.log(err);
+  pool.query("DELETE FROM masters WHERE id_master=?", [id], function (err, data) {
+    if (err) return console.log(err);
     res.redirect("/masters");
   });
 });
 
-app.post("/delete_client/:id", function(req, res){
+app.post("/delete_client/:id", function (req, res) {
 
   const id = req.params.id;
-  pool.query("DELETE FROM clients WHERE id_client=?", [id], function(err, data) {
-    if(err) return console.log(err);
+  pool.query("DELETE FROM clients WHERE id_client=?", [id], function (err, data) {
+    if (err) return console.log(err);
     res.redirect("/clients");
   });
 });
 
-app.post("/delete_spec/:id", function(req, res){
+app.post("/delete_spec/:id", function (req, res) {
 
   const id = req.params.id;
-  pool.query("DELETE FROM specializations WHERE id_specialization=?", [id], function(err, data) {
-    if(err) return console.log(err);
+  pool.query("DELETE FROM specializations WHERE id_specialization=?", [id], function (err, data) {
+    if (err) return console.log(err);
     res.redirect("/specializations");
   });
 });
 
-app.post("/delete_order/:id", function(req, res){
+app.post("/delete_order/:id", function (req, res) {
 
   const id = req.params.id;
-  pool.query("DELETE FROM orders WHERE id_order=?", [id], function(err, data) {
-    if(err) return console.log(err);
+  pool.query("DELETE FROM orders WHERE id_order=?", [id], function (err, data) {
+    if (err) return console.log(err);
     res.redirect("/orders");
   });
 });
 
 
+// ////// Редактирование участков ///////
 
+// получем id редактируемой специализации, получаем его из бд и отправлям с формой редактирования
+app.get("/edit_spec/:id", function (req, res) {
+  const id = req.params.id;
+  pool.query("SELECT * FROM specializations WHERE id_specialization=?", [id], function (err, data) {
+    if (err) return console.log(err);
+    res.render("edit_spec.hbs", {
+      specializations: data[0]
+    });
+  });
+});
+// получаем отредактированные данные и отправляем их в БД
+app.post("/edit_spec/", urlencodedParser, function (req, res) {
+
+  if (!req.body) return res.sendStatus(400);
+  const name = req.body.name;
+  const id = req.body.id;
+
+  pool.query("UPDATE specializations SET specialization=? WHERE id_specialization=?", [name, id], function (err, data) {
+    if (err) return console.log(err);
+    res.redirect("/specializations");
+  });
+});
 
 
 // pool.end(function(err) {
@@ -389,9 +426,6 @@ app.post("/delete_order/:id", function(req, res){
 //   }
 //   console.log("Pool closed");
 // });
-
-
-
 
 
 app.listen(3000, "127.0.0.1");

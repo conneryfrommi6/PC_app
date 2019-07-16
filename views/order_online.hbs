@@ -1,13 +1,12 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
     <title>Отправить заявку</title>
-    <link rel="stylesheet" href="../css/style.css">
-    <link rel="stylesheet" href="../css/style-order.css">
-    <link rel="stylesheet" href="../css/reset.css">
-    <link rel="stylesheet" href="../css/fonts.css">
-    <link rel="icon" href="../favicon.png">
+    <meta charset="utf-8"/>
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <link rel="stylesheet" type="text/css" href="css/style-order.css">
+    <link rel="stylesheet" type="text/css" href="css/reset.css">
+    <link rel="stylesheet" type="text/css" href="css/fonts.css">
 </head>
 <body>
 <div class="wrapper">
@@ -26,10 +25,10 @@
         </div>
         <div class="nav">
             <ul class="nav-list">
-                <li class="nav-item"><a href="../index.html"><span> Главная </span></a></li>
-                <li class="nav-item"><a href="./about.html"><span> О нас </span></a></li>
-                <li class="nav-item"><a href="./services.html"><span> Услуги </span></a></li>
-                <li class="nav-item"><a href="./order.html"><span> Заказать </span></a></li>
+                <li class="nav-item"><a href="http://localhost:63342/PC_app/index.html"><span> Главная </span></a></li>
+                <li class="nav-item"><a href="http://localhost:63342/PC_app/pages/about.html"><span> О нас </span></a></li>
+                <li class="nav-item"><a href="http://localhost:63342/PC_app/pages/services.html"><span> Услуги </span></a></li>
+                <li class="nav-item"><a href="/order_online"><span> Заказать </span></a></li>
             </ul>
         </div>
 
@@ -38,7 +37,7 @@
     <div class="central">
         <main class="main main-order">
 
-            <form class="contact-form" action="#" method="post" name="contact_form">
+            <form class="contact-form" method="POST" name="contact_form">
                 <ul>
                     <li>
                         <h2>Отправьте нам свою заявку!</h2>
@@ -46,21 +45,21 @@
                     </li>
                     <li>
                         <label for="name">Имя Фамилия:</label>
-                        <input type="text" id="name" placeholder="Иванов Игорь Николаевич" required minlength="3"/>
+                        <input name="name" type="text" id="name" placeholder="Иванов Игорь Николаевич" required minlength="3"/>
                     </li>
                     <li>
                         <label for="email">Email:</label>
-                        <input class="email" type="email" name="email" id="email" placeholder="ivanov@tut.by" pattern="[A-Za-z0-9_]{1,}@[A-Za-z]{1,}.[A-Za-z]{2,}"/>
+                        <input name="email" class="email" type="email" id="email" placeholder="ivanov@tut.by" pattern="[A-Za-z0-9_]{1,}@[A-Za-z]{1,}.[A-Za-z]{2,}"/>
                         <span class="form-hint">Верный формат: "name@something.com"</span>
                     </li>
                     <li>
                         <label for="phone">Телефон:</label>
-                        <input type="text" name="phone"  id="phone" placeholder="80291123443" required pattern="80(29|44)[0-9]{7}"/>
+                        <input name="phone" type="text" id="phone" placeholder="80291123443" required pattern="80(29|44)[0-9]{7}"/>
                         <span class="form-hint">Верный формат: "80291123443"</span>
                     </li>
                     <li>
                         <label for="title">Тема:</label>
-                        <input type="text" id="title" placeholder="Не включается ноутбук" required />
+                        <input name="title" type="text" id="title" placeholder="Не включается ноутбук" required />
                     </li>
                     <li>
                         <label for="message">Описание проблемы:</label>

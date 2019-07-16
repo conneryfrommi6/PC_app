@@ -345,6 +345,38 @@ app.post("/create_order", urlencodedParser, function (req, res) {
   });
 });
 
+// ////// Добавление он-лайн заказа ////////////////
+
+// возвращаем форму для добавления данных
+app.get("/order_online", function (req, res) {
+  res.render("order_online.hbs");
+});
+
+app.get("/order_online", function (req, res) {
+  pool.query("SELECT * FROM online_orders", function (err, data) {
+    if (err) return console.log(err);
+    res.render("order_online.hbs", {
+      online_orders: data
+    });
+  });
+});
+
+// получаем отправленные данные и добавляем их в БД
+app.post("/order_online", urlencodedParser, function (req, res) {
+
+  if (!req.body) return res.sendStatus(400);
+  const name = req.body.name;
+  const email = req.body.email;
+  const phone = req.body.phone;
+  const title = req.body.title;
+  const message = req.body.message;
+
+  pool.query("INSERT INTO online_orders (name_client_online, email, phone, title, comments) VALUES (?,?,?,?,?)", [name, email, phone, email, title, message], function (err, data) {
+    if (err) return console.log(err);
+    res.redirect("/order_online");
+  });
+});
+
 
 // ///// Удаление записей //////
 

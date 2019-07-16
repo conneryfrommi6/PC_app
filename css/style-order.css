@@ -1,7 +1,8 @@
 .main-order {
     background: url(../assets/images/background/order.jpg) no-repeat 100% 0;
     background-size: cover;
-    padding: 36px;
+    height: 91.9vh;
+    min-height: max-content;
 }
 
 .contact-form {

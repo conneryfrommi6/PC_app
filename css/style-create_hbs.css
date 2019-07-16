@@ -3,9 +3,9 @@
     font-family: ElMessiri-Regular, serif;
     font-size: 20px;
     text-align: center;
-    padding: 50px 10px;
-    min-height: 566px;
     font-weight: bold;
+    height: 100vh;
+    min-height: max-content;
 }
 
 .main-create h1 {
@@ -13,13 +13,14 @@
     font-size: 40px;
     color: #84251a;
     text-align: center;
+    padding-top: 90px;
 }
 
 a.links-item {
     display: inline-block;
     color: #ecf6fd;
     padding: 10px 10px;
-    margin: 40px 20px;
+    margin: 30px 20px;
     border-radius: 25px;
     letter-spacing: 1px;
     background-image: linear-gradient(to right, #56efb1 0%, #0fbf78 51%, #95ef96 100%);
@@ -51,10 +52,10 @@ a.links-item:hover {
 }
 
 .form-create p {
-    padding-bottom: 25px;
-    clear:both;
-    text-align:right;
-    line-height: 35px;
+    padding-bottom: 10px;
+    clear: both;
+    text-align: right;
+    line-height: 30px;
 }
 
 .form-create label {
@@ -96,4 +97,12 @@ a.links-item:hover {
     box-shadow: 0 15px 20px rgba(46,229,157,.4);
     color: white;
     transform: translateY(-7px);
+}
+
+.readonly {
+    background-color: rgb(194, 205, 208);
+}
+
+.date_finish input{
+    width: 130px;
 }

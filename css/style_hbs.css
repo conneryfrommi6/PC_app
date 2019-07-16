@@ -1,11 +1,11 @@
 .main-start {
-    background: url(../assets/images/background/base_main.jpg) no-repeat 100% 0;
-    background-size: cover;
+    background: url(../assets/images/background/base_main.jpg) no-repeat 30% 0;
     font-family: ElMessiri-Regular, serif;
     font-size: 25px;
     font-weight: bold;
     text-align: center;
-    min-height: 666px;
+    height: 100vh;
+    min-height: max-content;
 }
 
 .title-logo {
@@ -35,7 +35,7 @@ margin-top: -5px;
 
 .title-logo h1 {
     font-size: 40px;
-    padding: 55px 0;
+    padding: 45px 0 90px 0;
     font-weight: bold;
     flex-grow: 1;
     align-self: center;
@@ -120,9 +120,9 @@ a.button:active {
     font-family: ElMessiri-Regular, serif;
     font-size: 20px;
     text-align: center;
-    padding: 50px 10px;
-    min-height: 566px;
-}
+    height: 100vh;
+    min-height: max-content;
+ }
 
 .main-all h1 {
     font-family: Pattaya-Regular, serif;
@@ -130,12 +130,12 @@ a.button:active {
     color: #84251a;
     text-align: center;
     padding-bottom: 45px;
+    padding-top: 10px;
 }
 
 .back {
     text-align: left;
     margin-left: 5%;
-    margin-top: -20px;
     margin-bottom: 5px;
 }
 
@@ -148,6 +148,7 @@ a.button-back {
     font-weight: bold;
     font-size: 25px;
     color: #844a41;
+    margin-top: 50px;
 }
 
 a.button-back:hover {
@@ -166,7 +167,7 @@ a.button-back:active {
 }
 
 .table-all {
-    margin:auto;
+    margin: 0 auto 2% auto;
     font-weight: bold;
     font-size: 18px;
 }

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Редактирование услуги</title>
+    <link rel="stylesheet" type="text/css" href="/css/style-create_hbs.css">
+    <link rel="stylesheet" type="text/css" href="/css/reset.css">
+    <link rel="stylesheet" type="text/css" href="/css/fonts.css">
+</head>
+<body>
+<main class="main-create">
+    <h1>Редактирование Услуги</h1>
+
+    <div class="links">
+        <a href="/services" class="links-item">список услуг</a>
+        <a href="/" class="links-item">главная форма</a>
+    </div>
+    <form class='form-create' action="/edit_service" method="POST">
+        <p>
+            <input type="hidden" name="id" value="{{services.id_service}}"/>
+        </p>
+        <p>
+            <label for="name">Наименование</label>
+            <input name="name" type="text" id="name" value="{{services.name_service}}" required minlength="2"/>
+        </p>
+        <p>
+            <label for="price">Цена</label>
+            <input name="price" type="number" id="price" value="{{services.price}}" required/>
+        </p>
+        <p>
+            <label for="guarantee">Гарантия</label>
+            <input name="guarantee" type="number" id="guarantee" value="{{services.guarantee}}" required/>
+        </p>
+        <p>
+            <input type="submit" value="Сохранить" class="submit"/>
+        </p>
+    </form>
+</main>
+</body>
+</html>

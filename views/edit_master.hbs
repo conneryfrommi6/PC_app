@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Редактирование мастера</title>
+    <link rel="stylesheet" type="text/css" href="/css/style-create_hbs.css">
+    <link rel="stylesheet" type="text/css" href="/css/reset.css">
+    <link rel="stylesheet" type="text/css" href="/css/fonts.css">
+</head>
+<body>
+<main class="main-create">
+    <h1>Редактирование Мастера</h1>
+
+    <div class="links">
+        <a href="/masters" class="links-item">список участков</a>
+        <a href="/" class="links-item">главная форма</a>
+    </div>
+    <form class='form-create' action="/edit_master" method="POST">
+        <p>
+            <input type="hidden" name="id" value="{{masters.id_master}}"/>
+        </p>
+        <p>
+            <label for="name">ФИО</label>
+            <input name="name" id="name" type="text" value="{{masters.name_master}}" required minlength="10"/>
+        </p>
+
+        <p>
+            <label for="address">Адрес</label>
+            <input name="address" id="address" type="text" value="{{masters.adress}}" required minlength="10"/>
+        </p>
+        <p>
+            <label for="phone">Телефон</label>
+            <input name="phone" id="phone" type="text" value="{{masters.phone}}" required pattern="80(29|44)[0-9]{7}"/>
+        </p>
+        <p>
+            <label for="email">Телефон</label>
+            <input name="email" id="email" type="text" value="{{masters.email}}" required pattern="[A-Za-z0-9_]{1,}@[A-Za-z]{1,}.[A-Za-z]{2,}"/>
+        </p>
+        <p>
+            <label for="specialization"><a href="/specializations" class ='id-link' title='Для просмотра списка специализаций пройдите по ссылке' target="_blank">Специализация</a></label>
+            <input name="specialization" type="number" id="specialization" value="{{masters.id_specialization}}" required minlength="1" maxlength="1"/>
+        </p>
+        <p>
+            <input type="submit" value="Сохранить" class="submit"/>
+        </p>
+    </form>
+</main>
+</body>
+</html>

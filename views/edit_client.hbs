@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Редактирование клиента</title>
+    <link rel="stylesheet" type="text/css" href="/css/style-create_hbs.css">
+    <link rel="stylesheet" type="text/css" href="/css/reset.css">
+    <link rel="stylesheet" type="text/css" href="/css/fonts.css">
+</head>
+<body>
+<main class="main-create">
+    <h1>Редактирование Клиента</h1>
+
+    <div class="links">
+        <a href="/clients" class="links-item">список клиентов</a>
+        <a href="/" class="links-item">главная форма</a>
+    </div>
+    <form class='form-create' action="/edit_client" method="POST">
+        <p>
+            <input type="hidden" name="id" value="{{clients.id_client}}"/>
+        </p>
+        <p>
+            <label for="name">ФИО</label>
+            <input name="name" id="name" type="text" value="{{clients.name_client}}" required minlength="10"/>
+        </p>
+        <p>
+            <label for="address">Адрес</label>
+            <input name="address" id="address"  type="text" value="{{clients.adress}}" required minlength="10"/>
+        </p>
+        <p>
+            <label for="phone">Телефон</label>
+            <input name="phone" id="phone" type="text" value="{{clients.phone}}" required pattern="80(29|44)[0-9]{7}"/>
+        </p>
+        <p>
+            <label for="email">Эмейл</label>
+            <input name="email" id="email" type="text" value="{{clients.email}}" placeholder="Может быть пустым" pattern="[A-Za-z0-9_]{1,}@[A-Za-z]{1,}.[A-Za-z]{2,}" minlength="5" maxlength="50"/>
+        </p>
+        <p>
+            <label for="vip">VIP</label>
+            <input name="vip" type="number" value="{{clients.vip}}" id="vip" required min="0" max="1"/>
+        </p>
+        <p>
+            <input type="submit" value="Сохранить" class="submit"/>
+        </p>
+    </form>
+</main>
+</body>
+</html>

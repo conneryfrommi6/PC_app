@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Редактирование заказа</title>
+    <link rel="stylesheet" type="text/css" href="/css/style-create_hbs.css">
+    <link rel="stylesheet" type="text/css" href="/css/reset.css">
+    <link rel="stylesheet" type="text/css" href="/css/fonts.css">
+</head>
+<body>
+<main class="main-create">
+    <h1>Редактирование Заказа</h1>
+
+    <div class="links">
+        <a href="/orders" class="links-item">список заказов</a>
+        <a href="/" class="links-item">главная форма</a>
+    </div>
+    <form class='form-create' action="/edit_order" method="POST">
+        <p>
+            <input type="hidden" name="id" value="{{orders.id_order}}"/>
+        </p>
+        <p>
+            <label for="date_order">Дата заказа</label>
+            <input name="date_order" id="date_order" class="readonly" type="text" title="Не редактируемое поле" value="{{orders.date_order}}" readonly/>
+        </p>
+        <p>
+            <label for="name">Техника</label>
+            <input name="name" id="name" value="{{orders.name_device}}" required minlength="3"/>
+        </p>
+        <p class="date_finish">
+            <label for="date_finish">Дата выполнения</label>
+           <input name="date_finish_string" id="date_finish_string" type="text" value="{{orders.date_finish}}"/>
+            <input name="date_finish_calendar" id="date_finish_calendar" type="date" title="Выбрать из календаря"/></p>
+
+        <p>
+            <label for="paid">Оплачено</label>
+            <input name="paid" type="number" id="paid" value="{{orders.paid}}" required minlength="1" maxlength="1"/>
+        </p>
+        <p>
+            <label for="returned">Выдано</label>
+            <input name="returned" type="number" id="returned" value="{{orders.returned}}" required minlength="1" maxlength="1"/>
+        </p>
+        <p>
+            <label for="price">К оплате</label>
+            <input name="price" type="number" id="price" value="{{orders.price_final}}" minlength="1" maxlength="3"/>
+        </p>
+        <p>
+            <label for="comments">Комментарии</label>
+            <input name="comments" type="text" id="comments" placeholder="Может быть пустым" value="{{orders.comments}}"/>
+        </p>
+        <p>
+            <label for="client"><a href="/clients" class ='id-link' title='Для просмотра списка клиентов пройдите по ссылке' target="_blank">Клиент</a></label>
+            <input name="client" type="number" id="client" value="{{orders.id_client}}" required minlength="1" maxlength="1"/>
+        </p>
+        <p>
+            <label for="master"><a href="/masters" class ='id-link' title='Для просмотра списка мастеров пройдите по ссылке' target="_blank">Мастер</a></label>
+            <input name="master" type="number" id="master" value="{{orders.id_master}}" required minlength="1" maxlength="1"/>
+        </p>
+        <p>
+            <label for="service"><a href="/services" class ='id-link' title='Для просмотра списка услуг пройдите по ссылке' target="_blank">Услуга</a></label>
+            <input name="service" type="number" id="service" value="{{orders.id_service}}" required minlength="1" maxlength="1"/>
+        </p>
+        <p>
+            <input type="submit" value="Сохранить" class="submit"/>
+        </p>
+    </form>
+</main>
+</body>
+</html>

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Редактирование участка</title>
+    <link rel="stylesheet" type="text/css" href="/css/style-create_hbs.css">
+    <link rel="stylesheet" type="text/css" href="/css/reset.css">
+    <link rel="stylesheet" type="text/css" href="/css/fonts.css">
+</head>
+<body>
+<main class="main-create">
+    <h1>Редактирование Участка</h1>
+
+    <div class="links">
+        <a href="/specializations" class="links-item">список участков</a>
+        <a href="/" class="links-item">главная форма</a>
+    </div>
+    <form class='form-create' action="/edit_spec" method="POST">
+        <p>
+            <input type="hidden" name="id" value="{{specializations.id_specialization}}"/>
+        </p>
+        <p>
+            <label for="name">Специализация</label>
+            <input name="name" id="name" type="text" value="{{specializations.specialization}}"/>
+        </p>
+        <p>
+            <input type="submit" value="Сохранить" class="submit"/>
+        </p>
+    </form>
+</main>
+</body>
+</html>

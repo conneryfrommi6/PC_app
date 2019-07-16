@@ -420,6 +420,156 @@ app.post("/edit_spec/", urlencodedParser, function (req, res) {
 });
 
 
+// ////// Редактирование мастеров ///////
+
+// получем id редактируемого мастера, получаем его из бд и отправлям с формой редактирования
+app.get("/edit_master/:id", function (req, res) {
+  const id = req.params.id;
+  pool.query("SELECT * FROM masters WHERE id_master=?", [id], function (err, data) {
+    if (err) return console.log(err);
+    res.render("edit_master.hbs", {
+      masters: data[0]
+    });
+  });
+});
+// получаем отредактированные данные и отправляем их в БД
+app.post("/edit_master/", urlencodedParser, function (req, res) {
+
+  if (!req.body) return res.sendStatus(400);
+  const name = req.body.name;
+  const address = req.body.address;
+  const phone = req.body.phone;
+  const email = req.body.email;
+  const specialization = req.body.specialization;
+  const id = req.body.id;
+
+  pool.query("UPDATE masters SET name_master=?, adress=?, phone=?, email=?, id_specialization=? WHERE id_master=?", [name, address, phone, email, specialization, id], function (err, data) {
+    if (err) return console.log(err);
+    res.redirect("/masters");
+  });
+});
+
+// ////// Редактирование клиентов ///////
+
+// получем id редактируемого клиента, получаем его из бд и отправлям с формой редактирования
+app.get("/edit_client/:id", function (req, res) {
+  const id = req.params.id;
+  pool.query("SELECT * FROM clients WHERE id_client=?", [id], function (err, data) {
+    if (err) return console.log(err);
+    res.render("edit_client.hbs", {
+      clients: data[0]
+    });
+  });
+});
+// получаем отредактированные данные и отправляем их в БД
+app.post("/edit_client/", urlencodedParser, function (req, res) {
+
+  if (!req.body) return res.sendStatus(400);
+  const name = req.body.name;
+  const address = req.body.address;
+  const phone = req.body.phone;
+  const email = req.body.email;
+  const vip = req.body.vip;
+  const id = req.body.id;
+
+  pool.query("UPDATE clients SET name_client=?, adress=?, phone=?, email=?, vip=? WHERE id_client=?", [name, address, phone, email, vip, id], function (err, data) {
+    if (err) return console.log(err);
+    res.redirect("/clients");
+  });
+});
+
+// ////// Редактирование услуг ///////
+
+// получем id редактируемой услуги, получаем его из бд и отправлям с формой редактирования
+app.get("/edit_service/:id", function (req, res) {
+  const id = req.params.id;
+  pool.query("SELECT * FROM services WHERE id_service=?", [id], function (err, data) {
+    if (err) return console.log(err);
+    res.render("edit_service.hbs", {
+      services: data[0]
+    });
+  });
+});
+// получаем отредактированные данные и отправляем их в БД
+app.post("/edit_service/", urlencodedParser, function (req, res) {
+
+  if (!req.body) return res.sendStatus(400);
+  const name = req.body.name;
+  const price = req.body.price;
+  const guarantee = req.body.guarantee;
+  const id = req.body.id;
+
+  pool.query("UPDATE services SET name_service=?, price=?, guarantee=? WHERE id_service=?", [name, price, guarantee, id], function (err, data) {
+    if (err) return console.log(err);
+    res.redirect("/services");
+  });
+});
+
+// ////// Редактирование заказа ///////
+
+// получем id редактируемого заказа, получаем его из бд и отправлям с формой редактирования
+app.get("/edit_order/:id", function (req, res) {
+  const id = req.params.id;
+  pool.query("SELECT * FROM orders WHERE id_order=?", [id], function (err, data) {
+    if (err) return console.log(err);
+
+    //меняем формат даты на человеческий
+    data.forEach(function (element) {
+
+      const dateOrder = new Date(element.date_order);
+      const dateFin = new Date(element.date_finish);
+
+      element.date_order = dateOrder.getFullYear() + '.' + (("0" + (dateOrder.getMonth() + 1)).slice(-2)) + '.' + (("0" + dateOrder.getDate()).slice(-2));
+
+      if (element.date_finish != null) {
+        element.date_finish = dateFin.getFullYear() +  '.' + (("0" + (dateFin.getMonth() + 1)).slice(-2)) + '.' + (("0" + dateFin.getDate()).slice(-2));
+      } else {
+        element.date_finish = null;
+      }
+    });
+    res.render("edit_order.hbs", {
+      orders: data[0]
+    });
+  });
+});
+
+// получаем отредактированные данные и отправляем их в БД
+app.post("/edit_order/", urlencodedParser, function (req, res) {
+  if (!req.body) return res.sendStatus(400);
+  const name = req.body.name;
+  const paid = req.body.paid;
+  const returned = req.body.returned;
+  const comments = req.body.comments;
+  const client = req.body.client;
+  const master = req.body.master;
+  const service = req.body.service;
+  const id = req.body.id;
+
+  if (req.body.price === "") {
+    var price = null;
+  } else {
+    price = req.body.price;
+  }
+
+  if (req.body.date_finish_calendar === "" && req.body.date_finish_string=== "") {
+    var date_finish = null;
+  }
+
+  else if (req.body.date_finish_calendar === "" && req.body.date_finish_string !== "") {
+    date_finish=req.body.date_finish_string;
+  }
+  else {
+    date_finish = req.body.date_finish_calendar;
+  }
+
+     pool.query("UPDATE orders SET name_device=?, date_finish=?, paid=?, returned=?, price_final=?, comments=?, id_client=?, id_master=?, id_service=? WHERE id_order=?", [name, date_finish, paid, returned, price, comments, client, master, service, id], function (err, data) {
+    if (err) return console.log(err);
+    res.redirect("/orders");
+  });
+
+});
+
+
 // pool.end(function(err) {
 //   if (err) {
 //     return console.log(err.message);

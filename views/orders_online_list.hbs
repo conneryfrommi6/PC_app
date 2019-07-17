@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Онлайн Заявки</title>
+    <meta charset="utf-8"/>
+    <link rel="stylesheet" type="text/css" href="css/style_hbs.css">
+    <link rel="stylesheet" type="text/css" href="css/reset.css">
+    <link rel="stylesheet" type="text/css" href="css/fonts.css">
+</head>
+<body>
+<main class="main-all">
+    <p class="back"><a href="/" class='button-back'>Главная форма</a></p>
+    <h1>Заявки, поступившие с сайта <br><span>(желательное время первичной обработки - сутки)</span></h1>
+      <table class="table-all">
+        <tr>
+            <th>Номер</th>
+            <th>Дата отправки</th>
+            <th>ФИО</th>
+            <th>Эмейл</th>
+            <th>Телефон</th>
+            <th>Тема</th>
+            <th>Комментарии</th>
+        </tr>
+        {{#each online_orders}}
+            <tr>
+                <td>{{this.number}}</td>
+                <td>{{this.date}}</td>
+                <td>{{this.name_client_online}}</td>
+                <td>{{this.email}}</td>
+                <td>{{this.phone}}</td>
+                <td>{{this.title}}</td>
+                <td>{{this.comments}}</td>
+                <td>
+                    <div>
+                        <form action="delete_online_order/{{this.number}}" method="POST">
+                            <input class="delete-all" type="submit" value="удалить"/>
+                        </form>
+                    </div>
+                </td>
+            </tr>
+        {{/each}}
+    </table>
+</main>
+</body>
+</html>

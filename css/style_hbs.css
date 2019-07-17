@@ -15,18 +15,28 @@
 
 .title-logo a {
     align-self: center;
-    margin-left: 5%;
-    color: #98adbf;
-    background-color: rgba(152, 173, 191, .2);
+    margin-left: 3%;
+    color: #100d30;
+    background-color: rgba(152, 173, 191, .5);
     padding: 17px;
     border-radius: 15px;
     font-size: 16px;
+    letter-spacing: 1px;
 
 }
 
 .title-logo a:hover {
-    color: #141041;
-    background-color: rgba(152, 173, 191, .6);
+    color: #d3d6fa;
+    background-color: rgba(152, 173, 191, .9);
+ }
+
+.title-logo a:first-child {
+    color: #b0c7d9;
+}
+
+.title-logo a:first-child:hover {
+    color: #110e33;
+    background-color: rgba(152, 173, 191, .9);
 }
 
 .title-logo a:active {
@@ -40,8 +50,7 @@ margin-top: -5px;
     flex-grow: 1;
     align-self: center;
     color: #071452;
-    margin-left: 12%;
-}
+  }
 
 .title-logo img {
     width: 130px;
@@ -131,6 +140,12 @@ a.button:active {
     text-align: center;
     padding-bottom: 45px;
     padding-top: 10px;
+}
+
+.main-all h1 span {
+    font-family: DroidSerif, serif;
+    font-size: 16px;
+    font-weight: bold;
 }
 
 .back {

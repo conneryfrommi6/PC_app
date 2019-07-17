@@ -147,6 +147,7 @@ app.get("/orders", function (req, res) {
 
 });
 
+
 // получение списка специализаций
 app.get("/specializations", function (req, res) {
   pool.query("SELECT * FROM specializations", function (err, data) {
@@ -157,6 +158,24 @@ app.get("/specializations", function (req, res) {
   });
 });
 
+// получение списка он-лайн заказов
+
+app.get("/orders_online_list", function (req, res) {
+  pool.query("SELECT * FROM online_orders", function (err, data) {
+    if (err) return console.log(err);
+
+    //меняем формат даты на человеческий
+    data.forEach(function (element) {
+      const dateOrder = new Date(element.date);
+      element.date = (("0" + dateOrder.getDate()).slice(-2)) + '.' + (("0" + (dateOrder.getMonth() + 1)).slice(-2)) + '.' + dateOrder.getFullYear();
+    });
+
+    res.render("orders_online_list.hbs", {
+      online_orders: data
+    });
+  });
+
+});
 
 // получение списка для авторизации
 app.get("/auth", function (req, res) {
@@ -371,7 +390,7 @@ app.post("/order_online", urlencodedParser, function (req, res) {
   const title = req.body.title;
   const message = req.body.message;
 
-  pool.query("INSERT INTO online_orders (name_client_online, email, phone, title, comments) VALUES (?,?,?,?,?)", [name, email, phone, email, title, message], function (err, data) {
+  pool.query("INSERT INTO online_orders (name_client_online, email, phone, title, comments) VALUES (?,?,?,?,?)", [name, email, phone, title, message], function (err, data) {
     if (err) return console.log(err);
     res.redirect("/order_online");
   });
@@ -425,6 +444,14 @@ app.post("/delete_order/:id", function (req, res) {
   });
 });
 
+app.post("/delete_online_order/:id", function (req, res) {
+
+  const id = req.params.id;
+  pool.query("DELETE FROM online_orders WHERE number=?", [id], function (err, data) {
+    if (err) return console.log(err);
+    res.redirect("/orders_online_list");
+  });
+});
 
 // ////// Редактирование участков ///////
 
@@ -554,7 +581,7 @@ app.get("/edit_order/:id", function (req, res) {
       element.date_order = dateOrder.getFullYear() + '.' + (("0" + (dateOrder.getMonth() + 1)).slice(-2)) + '.' + (("0" + dateOrder.getDate()).slice(-2));
 
       if (element.date_finish != null) {
-        element.date_finish = dateFin.getFullYear() +  '.' + (("0" + (dateFin.getMonth() + 1)).slice(-2)) + '.' + (("0" + dateFin.getDate()).slice(-2));
+        element.date_finish = dateFin.getFullYear() + '.' + (("0" + (dateFin.getMonth() + 1)).slice(-2)) + '.' + (("0" + dateFin.getDate()).slice(-2));
       } else {
         element.date_finish = null;
       }
@@ -583,18 +610,15 @@ app.post("/edit_order/", urlencodedParser, function (req, res) {
     price = req.body.price;
   }
 
-  if (req.body.date_finish_calendar === "" && req.body.date_finish_string=== "") {
+  if (req.body.date_finish_calendar === "" && req.body.date_finish_string === "") {
     var date_finish = null;
-  }
-
-  else if (req.body.date_finish_calendar === "" && req.body.date_finish_string !== "") {
-    date_finish=req.body.date_finish_string;
-  }
-  else {
+  } else if (req.body.date_finish_calendar === "" && req.body.date_finish_string !== "") {
+    date_finish = req.body.date_finish_string;
+  } else {
     date_finish = req.body.date_finish_calendar;
   }
 
-     pool.query("UPDATE orders SET name_device=?, date_finish=?, paid=?, returned=?, price_final=?, comments=?, id_client=?, id_master=?, id_service=? WHERE id_order=?", [name, date_finish, paid, returned, price, comments, client, master, service, id], function (err, data) {
+  pool.query("UPDATE orders SET name_device=?, date_finish=?, paid=?, returned=?, price_final=?, comments=?, id_client=?, id_master=?, id_service=? WHERE id_order=?", [name, date_finish, paid, returned, price, comments, client, master, service, id], function (err, data) {
     if (err) return console.log(err);
     res.redirect("/orders");
   });

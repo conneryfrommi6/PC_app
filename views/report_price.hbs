@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Прайс-лист</title>
+    <meta charset="utf-8"/>
+    <link rel="stylesheet" type="text/css" href="css/style_hbs.css">
+    <link rel="stylesheet" type="text/css" href="css/reset.css">
+    <link rel="stylesheet" type="text/css" href="css/fonts.css">
+</head>
+<body>
+<main class="main-all main-report">
+    <p class="back"><a href="/" class='button-back'>Главная форма</a></p>
+    <h1>Прайс-лист.<br><span>Мастерская "Компьютерный доктор"</span></h1>
+    <div class="keys">
+        <p>Распечатать: Ctrl+P</p>
+        <p>Поиск: Ctrl+F</p>
+    </div>
+    <table class="table-all table-report">
+        <tr>
+            <th></th>
+            <th>Услуга</th>
+            <th>Цена (бел.р.)</th>
+            <th>Гарантия (мес.)</th>
+        </tr>
+        {{#each services}}
+            <tr>
+                <td>&#893;</td>
+                <td>{{this.name_service}}</td>
+                <td class="center">{{this.price}}</td>
+                <td>{{this.guarantee}}</td>
+            </tr>
+        {{/each}}
+    </table>
+    <div class="current-date">Цены актуальны на дату: </div>
+</main>
+<script type="text/javascript">
+    const currentDate = new Date();
+    const currentDateNormal = (("0" + currentDate.getDate()).slice(-2)) + '.' + (("0" + (currentDate.getMonth() + 1)).slice(-2))
+            + '.' + currentDate.getFullYear();
+    const divForDate = document.querySelector('.current-date');
+    divForDate.firstChild.nodeValue += currentDateNormal;
+</script>
+</body>
+</html>

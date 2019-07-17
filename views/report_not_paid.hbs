@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Неоплаченные заказы</title>
+    <meta charset="utf-8"/>
+    <link rel="stylesheet" type="text/css" href="css/style_hbs.css">
+    <link rel="stylesheet" type="text/css" href="css/reset.css">
+    <link rel="stylesheet" type="text/css" href="css/fonts.css">
+</head>
+<body>
+<main class="main-all main-report">
+    <p class="back"><a href="/" class='button-back'>Главная форма</a></p>
+    <h1>Выполенные, но не оплаченные заказы. <br><span>Мастерская "Компьютерный доктор"</span> </h1>
+  <div class="keys">
+      <p>Распечатать: Ctrl+P</p>
+      <p>Поиск: Ctrl+F</p>
+  </div>
+    <table class="table-all table-report">
+        <tr>
+            <th>Номер</th>
+            <th>Дата заказа</th>
+            <th>Техника</th>
+            <th>Дата выполнения</th>
+            <th>К оплате</th>
+            <th>Клиент</th>
+            <th>Телефон клиента</th>
+            <th>Комментарии</th>
+            <th>Мастер</th>
+            <th>Услуга</th>
+        </tr>
+        {{#each orders}}
+            <tr>
+                <td><a href="/edit_order/{{this.id_order}}" class="link" target="_blank">{{this.id_order}}</a></td>
+                <td>{{this.date_order}}</td>
+                <td>{{this.name_device}}</td>
+                <td>{{this.date_finish}}</td>
+                <td>{{this.price_final}}</td>
+                <td>{{this.name_client}}</td>
+                <td>{{this.phone}}</td>
+                <td>{{this.comments}}</td>
+                <td>{{this.name_master}}</td>
+                <td style="text-align: left">{{this.name_service}}</td>
+              </tr>
+        {{/each}}
+    </table>
+    <div class="current-date">Дата формирования отчета: </div>
+</main>
+<script type="text/javascript">
+    const currentDate = new Date();
+    const currentDateNormal = (("0" + currentDate.getDate()).slice(-2)) + '.' + (("0" + (currentDate.getMonth() + 1)).slice(-2))
+            + '.' + currentDate.getFullYear() + ' (' + (("0" + currentDate.getHours()).slice(-2))
+            + ':' + (("0" + currentDate.getMinutes()).slice(-2)) + ')';
+    const divForDate = document.querySelector('.current-date');
+    divForDate.firstChild.nodeValue += currentDateNormal;
+</script>
+</body>
+</html>

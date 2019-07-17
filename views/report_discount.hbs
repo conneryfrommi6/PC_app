@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Скидки по заказам - подробно</title>
+    <meta charset="utf-8"/>
+    <link rel="stylesheet" type="text/css" href="css/style_hbs.css">
+    <link rel="stylesheet" type="text/css" href="css/reset.css">
+    <link rel="stylesheet" type="text/css" href="css/fonts.css">
+</head>
+<body>
+<main class="main-all main-report">
+    <p class="back"><a href="/" class='button-back'>Главная форма</a></p>
+    <h1>Скидки и надбавки по заказам <br><span>Мастерская "Компьютерный доктор"</span></h1>
+    <div class="keys">
+        <p>Распечатать: Ctrl+P</p>
+        <p>Поиск: Ctrl+F</p>
+    </div>
+    <table class="table-all table-report">
+        <tr>
+            <th>Номер</th>
+            <th>Дата заказа</th>
+            <th>Услуга</th>
+            <th>Оплачено
+            <th>Стоимость</th>
+            <th>К оплате</th>
+            <th>-Скидка <br>+Надбавка</th>
+            <th>Комментарии</th>
+        </tr>
+        {{#each orders}}
+            <tr>
+                <td>{{this.id_order}}</td>
+                <td class="center">{{this.date_order}}</td>
+                <td>{{this.name_service}}</td>
+                <td class="center">{{this.paid}}
+                <td class="center">{{this.price}}</td>
+                <td class="center">{{this.price_final}}</td>
+                <td class="center">{{'price_final-services.price'}}</td>
+                <td>{{this.comments}}</td>
+            </tr>
+        {{/each}}
+    </table>
+    <div class="current-date">Дата формирования отчета: </div>
+</main>
+<script type="text/javascript">
+    const currentDate = new Date();
+    const currentDateNormal = (("0" + currentDate.getDate()).slice(-2)) + '.' + (("0" + (currentDate.getMonth() + 1)).slice(-2))
+            + '.' + currentDate.getFullYear() + ' (' + (("0" + currentDate.getHours()).slice(-2))
+            + ':' + (("0" + currentDate.getMinutes()).slice(-2)) + ')';
+    const divForDate = document.querySelector('.current-date');
+    divForDate.firstChild.nodeValue += currentDateNormal;
+</script>
+</body>
+</html>

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Скидки по заказам</title>
+    <meta charset="utf-8"/>
+    <link rel="stylesheet" type="text/css" href="css/style_hbs.css">
+    <link rel="stylesheet" type="text/css" href="css/reset.css">
+    <link rel="stylesheet" type="text/css" href="css/fonts.css">
+</head>
+<body>
+<main class="main-all main-report">
+    <p class="back"><a href="/" class='button-back'>Главная форма</a></p>
+    <h1>Общая сводка по скидкам по заказам <br><span>Мастерская "Компьютерный доктор"</span></h1>
+    <table class="table-all table-report">
+        {{#each orders}}
+            <tr>
+                <td> Итого сумма предоставленных скидок составила:  {{'SUM (services.price-price_final)'}} бел.руб.</td>
+            </tr>
+        {{/each}}
+    </table>
+    <div class="current-date">Дата формирования сводки: </div>
+    <p><a href="/report_discount" class='button-back'>Посмотреть подробную информация</a></p>
+</main>
+<script type="text/javascript">
+    const currentDate = new Date();
+    const currentDateNormal = (("0" + currentDate.getDate()).slice(-2)) + '.' + (("0" + (currentDate.getMonth() + 1)).slice(-2))
+            + '.' + currentDate.getFullYear() + ' (' + (("0" + currentDate.getHours()).slice(-2))
+            + ':' + (("0" + currentDate.getMinutes()).slice(-2)) + ')';
+    const divForDate = document.querySelector('.current-date');
+    divForDate.firstChild.nodeValue += currentDateNormal;
+</script>
+</body>
+</html>

@@ -626,6 +626,179 @@ app.post("/edit_order/", urlencodedParser, function (req, res) {
 });
 
 
+// ///////////////////////ОТЧЕТЫ ////////////////////////////////////
+
+// Неоплаченные заказы
+
+app.get("/report_not_paid", function (req, res) {
+  pool.query("SELECT id_order, date_order, name_device, date_finish, price_final, clients.name_client, clients.phone," +
+   "services.name_service, comments, masters.name_master FROM orders JOIN clients " +
+   "on clients.id_client=orders.id_client JOIN masters on masters.id_master=orders.id_master " +
+   "JOIN services on services.id_service=orders.id_service WHERE `paid` = 0 AND `returned` = 0 AND `date_finish` IS NOT NULL ORDER BY orders.id_order", function (err, data) {
+    if (err) return console.log(err);
+    // //////настройка вывода отображения данных //////////
+
+    //меняем формат даты на человеческий
+    data.forEach(function (element) {
+      const dateOrder = new Date(element.date_order);
+      const dateFin = new Date(element.date_finish);
+
+      element.date_order = (("0" + dateOrder.getDate()).slice(-2)) + '.' + (("0" + (dateOrder.getMonth() + 1)).slice(-2)) + '.' + dateOrder.getFullYear();
+
+      if (element.date_finish != null) {
+        element.date_finish = (("0" + dateFin.getDate()).slice(-2)) + '.' + (("0" + (dateFin.getMonth() + 1)).slice(-2)) + '.' + dateFin.getFullYear();
+      } else {
+        element.date_finish = null;
+      }
+
+    });
+
+    res.render("report_not_paid.hbs", {
+      orders: data
+    });
+  });
+
+});
+
+
+// Невыполненные заказы
+
+app.get("/report_not_finished", function (req, res) {
+  pool.query("SELECT orders.id_order, orders.date_order, orders.name_device, orders.paid, orders.price_final, orders.comments, clients.name_client, services.name_service, masters.name_master FROM orders JOIN clients on clients.id_client=orders.id_client JOIN masters on masters.id_master=orders.id_master JOIN services on services.id_service=orders.id_service \n" +
+   "WHERE `returned` = 0 AND `date_finish` IS NULL\n" +
+   "ORDER BY orders.id_order", function (err, data) {
+    if (err) return console.log(err);
+    // //////настройка вывода отображения данных //////////
+
+    //меняем формат даты на человеческий
+    data.forEach(function (element) {
+      const dateOrder = new Date(element.date_order);
+      element.date_order = (("0" + dateOrder.getDate()).slice(-2)) + '.' + (("0" + (dateOrder.getMonth() + 1)).slice(-2)) + '.' + dateOrder.getFullYear();
+
+      // меняем формат логических полей на человеческий
+      element.paid = element.paid ? "Да" : "Нет";
+    });
+
+    res.render("report_not_finished.hbs", {
+      orders: data
+    });
+  });
+
+});
+
+// Прайс-лист
+
+app.get("/report_price", function (req, res) {
+  pool.query("SELECT * FROM services", function (err, data) {
+    if (err) return console.log(err);
+    res.render("report_price.hbs", {
+      services: data
+    });
+  });
+
+});
+
+
+// Вип-клиенты
+
+app.get("/report_clients_vip", function (req, res) {
+  pool.query("SELECT * FROM clients WHERE `vip` = 1", function (err, data) {
+    if (err) return console.log(err);
+    res.render("report_clients_vip.hbs", {
+      clients: data
+    });
+  });
+
+});
+
+
+// Скидки
+
+app.get("/report_discount_sum", function (req, res) {
+  pool.query("SELECT  SUM (services.price-price_final) FROM orders JOIN services on services.id_service=orders.id_service WHERE price_final-services.price IS NOT null AND price_final-services.price != 0", function (err, data) {
+    if (err) return console.log(err);
+    // console.log(data);
+    res.render("report_discount_sum.hbs", {
+      orders: data,
+    });
+  });
+
+});
+
+
+app.get("/report_discount", function (req, res) {
+  pool.query("SELECT id_order, date_order, services.name_service, paid, services.price, price_final, price_final-services.price, comments FROM orders JOIN services on services.id_service=orders.id_service WHERE price_final-services.price IS NOT null AND price_final-services.price != 0 AND `price_final` IS NOT null ORDER BY price_final-services.price", function (err, data) {
+    if (err) return console.log(err);
+    // //////настройка вывода отображения данных //////////
+
+    //меняем формат даты на человеческий
+    data.forEach(function (element) {
+      const dateOrder = new Date(element.date_order);
+      element.date_order = (("0" + dateOrder.getDate()).slice(-2)) + '.' + (("0" + (dateOrder.getMonth() + 1)).slice(-2)) + '.' + dateOrder.getFullYear();
+
+      // меняем формат логических полей на человеческий
+      element.paid = element.paid ? "Да" : "Нет";
+console.log(element);
+    });
+console.log(data);
+    res.render("report_discount.hbs", {
+      orders: data,
+    });
+  });
+
+});
+
+// Скидки
+
+app.get("/report_discount_sum", function (req, res) {
+  pool.query("SELECT  SUM (services.price-price_final) FROM orders JOIN services on services.id_service=orders.id_service WHERE price_final-services.price IS NOT null AND price_final-services.price != 0", function (err, data) {
+    if (err) return console.log(err);
+    // console.log(data);
+    res.render("report_discount_sum.hbs", {
+      orders: data,
+    });
+  });
+
+});
+
+
+// Популярность услуг
+
+app.get("/report_services_popular", function (req, res) {
+  pool.query("SELECT services.name_service, COUNT(id_order), SUM(price_final) FROM orders JOIN services on services.id_service=orders.id_service GROUP BY services.name_service ORDER BY COUNT(id_order) DESC", function (err, data) {
+    if (err) return console.log(err);
+    res.render("report_services_popular.hbs", {
+      orders: data,
+    });
+  });
+
+});
+
+// Загруженность участков
+
+app.get("/report_spec_total", function (req, res) {
+  pool.query("SELECT specializations.specialization, COUNT(id_order), SUM(price_final) FROM orders JOIN masters on masters.id_master=orders.id_master JOIN specializations on specializations.id_specialization=masters.id_specialization GROUP BY specializations.specialization ORDER BY COUNT(id_order) DESC", function (err, data) {
+    if (err) return console.log(err);
+    res.render("report_spec_total.hbs", {
+      orders: data,
+    });
+  });
+
+});
+
+// Загруженность мастеров
+
+app.get("/report_masters_busy", function (req, res) {
+  pool.query("SELECT masters.name_master, COUNT(id_order) FROM orders JOIN masters on masters.id_master=orders.id_master WHERE orders.date_finish IS NULL GROUP BY masters.name_master ORDER BY masters.name_master", function (err, data) {
+    if (err) return console.log(err);
+    res.render("report_masters_busy.hbs", {
+      orders: data,
+    });
+  });
+
+});
+
+
 // pool.end(function(err) {
 //   if (err) {
 //     return console.log(err.message);

@@ -28,7 +28,7 @@
 .title-logo a:hover {
     color: #d3d6fa;
     background-color: rgba(152, 173, 191, .9);
- }
+}
 
 .title-logo a:first-child {
     color: #b0c7d9;
@@ -40,7 +40,7 @@
 }
 
 .title-logo a:active {
-margin-top: -5px;
+    margin-top: -5px;
 }
 
 .title-logo h1 {
@@ -50,7 +50,7 @@ margin-top: -5px;
     flex-grow: 1;
     align-self: center;
     color: #071452;
-  }
+}
 
 .title-logo img {
     width: 130px;
@@ -122,8 +122,8 @@ a.button:hover {
 
 a.button:active {
     top: 2px;
-
 }
+
 .main-all {
     background: rgba(197, 255, 172, 0.7) url(../assets/images/background/base_all.jpg) repeat 100% 0;
     font-family: ElMessiri-Regular, serif;
@@ -131,7 +131,7 @@ a.button:active {
     text-align: center;
     height: 100vh;
     min-height: max-content;
- }
+}
 
 .main-all h1 {
     font-family: Pattaya-Regular, serif;
@@ -187,12 +187,16 @@ a.button-back:active {
     font-size: 18px;
 }
 
+.table-all .center {
+text-align: center;
+}
+
 table tr td {
     border: 2px #bb4258 dotted;
-    padding: 3px;
+    padding: 8px 3px;
     text-align: left;
-    vertical-align : middle;
-}
+    vertical-align: middle;
+  }
 
 table tr td:first-child,
 table tr td:last-child {
@@ -208,7 +212,17 @@ table th {
     padding: 8px;
     color: #1f0404;
     font-size: 19px;
-    vertical-align : middle;
+    vertical-align: middle;
+}
+
+.table-all a.link {
+    color: inherit;
+    padding: 1px 10px;
+}
+
+.table-all a.link:hover {
+    background: rgba(187, 12, 9, .2);
+    border-radius: 50%;
 }
 
 form {
@@ -285,3 +299,30 @@ a.button-change:hover {
     background: rgba(242, 171, 182, 0.7);
 }
 
+.main-all .keys {
+    position: absolute;
+    font-family: DroidSerif, serif;
+    font-size: 16px;
+    font-weight: bold;
+    padding: 10px;
+    border-radius: 20px;
+    background-color: rgba(143, 36, 56, 0.13);
+    width: max-content;
+    text-align: left;
+    top: 10%;
+    left: 80%;
+}
+
+.main-report {
+background: rgba(197, 255, 172, 0.7) url(../assets/images/background/vintage-concrete.png) repeat 100% 0;
+}
+
+.table-report th,
+.table-report td,
+.table-report tr td:last-child {
+    border: 2px #bb8045 solid;
+}
+
+.table-report th {
+    background-color: rgba(187, 12, 9, .1);
+}

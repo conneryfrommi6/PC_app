@@ -717,8 +717,7 @@ app.get("/report_clients_vip", function (req, res) {
 app.get("/report_discount_sum", function (req, res) {
   pool.query("SELECT  SUM (services.price-price_final) FROM orders JOIN services on services.id_service=orders.id_service WHERE price_final-services.price IS NOT null AND price_final-services.price != 0", function (err, data) {
     if (err) return console.log(err);
-    // console.log(data);
-    res.render("report_discount_sum.hbs", {
+      res.render("report_discount_sum.hbs", {
       orders: data,
     });
   });
@@ -738,9 +737,7 @@ app.get("/report_discount", function (req, res) {
 
       // меняем формат логических полей на человеческий
       element.paid = element.paid ? "Да" : "Нет";
-console.log(element);
     });
-console.log(data);
     res.render("report_discount.hbs", {
       orders: data,
     });

@@ -129,8 +129,8 @@ a.button:active {
     font-family: ElMessiri-Regular, serif;
     font-size: 20px;
     text-align: center;
-    height: 100vh;
-    min-height: max-content;
+    min-height: 100vh;
+    /*min-height: max-content;*/
 }
 
 .main-all h1 {

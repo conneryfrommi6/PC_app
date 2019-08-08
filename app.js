@@ -1,55 +1,6 @@
-// const mysql = require("mysql2");
-//
-// const connection = mysql.createConnection({
-//   host: "localhost",
-//   user: "root",
-//   database: "pc-repair",
-//   password: ""
-// });
-//
-// // тестирование подключения
-// connection.connect(function (err) {
-//   if (err) {
-//     return console.error("Ошибка: " + err.message);
-//   } else {
-//     console.log("Подключение к серверу MySQL успешно установлено");
-//   }
-// });
-//
-// connection.query("SELECT * FROM services",
-//  function(err, results) {
-//    const container = document.querySelector(".test");
-//    const servicesList = document.createElement('p');
-//    container.appendChild(servicesList);
-//
-//    servicesList.innerHTML=results;
-//    // console.log(err);
-//    // console.log(results); // собственно данные
-//  });
-//
-//
-// // закрытие подключения
-// connection.end(function(err) {
-//   if (err) {
-//     return console.log("Ошибка: " + err.message);
-//   }
-//   console.log("Подключение закрыто");
-// });
-
-// import {runServer} from "/scripts/server";
-// import * as app from "express";
-// runServer();
-
-// import {createSpecialization} from "/scripts/specialization_create";
-// createSpecialization();
-//
 const mysql = require("mysql2");
 const express = require("express");
 const bodyParser = require("body-parser");
-
-//для favicon
-// const favicon = require('serve-favicon');
-// const path = require('path');
 
 const app = express();
 const urlencodedParser = bodyParser.urlencoded({extended: false});
@@ -794,15 +745,6 @@ app.get("/report_masters_busy", function (req, res) {
   });
 
 });
-
-
-// pool.end(function(err) {
-//   if (err) {
-//     return console.log(err.message);
-//   }
-//   console.log("Pool closed");
-// });
-
 
 app.listen(3000, "127.0.0.1");
 

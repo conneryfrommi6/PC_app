@@ -21,7 +21,12 @@ const SESSION_SECRET = 'DrCox';
 
 app.set("view engine", "hbs");
 app.use(express.static(__dirname + "/public"));
-app.use(session({ secret: SESSION_SECRET, cookie: { maxAge: SESSION_TIME }}));
+app.use(session({ 
+  secret: SESSION_SECRET, 
+  resave : false,
+  saveUninitialized : true, 
+  cookie: { maxAge: SESSION_TIME }
+}));
 
 
 

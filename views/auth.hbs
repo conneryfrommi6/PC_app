@@ -3,11 +3,11 @@
 <head>
     <title>Авторизация</title>
     <meta charset="utf-8"/>
-    <link rel="stylesheet" type="text/css" href="css/style.css">
-    <link rel="stylesheet" type="text/css" href="css/reset.css">
-    <link rel="stylesheet" type="text/css" href="css/fonts.css">
-    <link rel="stylesheet" type="text/css" href="css/style-order.css">
-    <link rel="stylesheet" type="text/css" href="css/style-auth.css">
+    <link rel="stylesheet" type="text/css" href="public/css/style.css">
+    <link rel="stylesheet" type="text/css" href="public/css/style.css">
+    <link rel="stylesheet" type="text/css" href="public/css/style.css">
+    <link rel="stylesheet" type="text/css" href="public/css/style.css">
+    <link rel="stylesheet" type="text/css" href="public/css/style.css">
 
 </head>
 <body>
@@ -38,9 +38,9 @@
     </div>
 
     <div class="central">
-
+        
         <main class="main main-order main-auth">
-             <table>
+             {{!-- <table>
                  <!--Удалить после отладки-->
                 <tr>
                     <th>Логин</th>
@@ -53,21 +53,22 @@
                         <td>{{this.password}}</td>
                     </tr>
                 {{/each}}
-            </table>
+            </table> --}}
 
             <!--<form class="contact-form" action="#" method="post" name="contact_form">-->
-                <form class="contact-form" action="http://localhost:3000/"  name="contact_form">
+                {{this.msg}};
+                <form class="contact-form" action="http://localhost:3000/login"  name="contact_form" method="POST">
                     <ul>
                         <li>
                             <h2>Для работы с базой данных, пожалуйста, пройдите авторизацию !</h2>
                         </li>
                         <li>
                             <label for="name">Логин:</label>
-                            <input class="input" type="text" id="name" placeholder="Пользователь" required minlength="3"/>
+                            <input class="input" type="text" id="name" name='user' placeholder="Пользователь" required minlength="3"/>
                         </li>
                         <li>
                             <label for="title">Пароль:</label>
-                            <input type="password" id="password" placeholder="Введите пароль" required minlength="5"/>
+                            <input type="password" id="password"  name='pass' placeholder="Введите пароль" required minlength="5"/>
                         </li>
                         <li>
                             <button class="submit" type="submit">Войти</button>

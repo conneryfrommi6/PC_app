@@ -1,0 +1,24 @@
+@font-face{
+    font-family: 'Pattaya-Regular';
+    src: url(../assets/fonts/Pattaya-Regular.ttf);
+}
+
+@font-face{
+    font-family: 'Amaranth-Regular';
+    src: url(../assets/fonts/Amaranth-Regular.ttf);
+}
+
+@font-face{
+    font-family: 'ElMessiri-Regular';
+    src: url(../assets/fonts/ElMessiri-Regular.ttf);
+}
+
+@font-face{
+    font-family: 'DroidSerif';
+    src: url(../assets/fonts/DroidSerif.ttf);
+}
+
+@font-face{
+    font-family: 'AngryBirds-Regular';
+    src: url(../assets/fonts/AngryBirds-Regular.ttf);
+}

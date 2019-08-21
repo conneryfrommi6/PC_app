@@ -1,6 +1,9 @@
 const mysql = require("mysql2");
 const express = require("express");
 const bodyParser = require("body-parser");
+const session = require('express-session');
+
+
 
 const app = express();
 const urlencodedParser = bodyParser.urlencoded({extended: false});
@@ -13,7 +16,13 @@ const pool = mysql.createPool({
   password: ""
 });
 
+const SESSION_TIME = 60 * 60 * 1000;
+const SESSION_SECRET = 'DrCox';
+
 app.set("view engine", "hbs");
+app.use(express.static(__dirname + "/public"));
+app.use(session({ secret: SESSION_SECRET, cookie: { maxAge: SESSION_TIME }}));
+
 
 
 // получение списка услуг для веб-сайта
@@ -130,18 +139,50 @@ app.get("/orders_online_list", function (req, res) {
 
 // получение списка для авторизации
 app.get("/auth", function (req, res) {
-  pool.query("SELECT * FROM authorization", function (err, data) {
-    if (err) return console.log(err);
+  // pool.query("SELECT * FROM authorization", function (err, data) {
+  //   if (err) return console.log(err);
+  //   console.log(data);
     res.render("auth.hbs", {
-      authorization: data
+      // authorization: data
     });
-  });
+  // });
 });
 
-// переход на общую страницу для работы с базой
-app.get("/", function (req, res) {
-  res.render("index.hbs")
+
+const isSessionEmpty = (req) => { return req.session.userId ? true : false };
+
+// if(!isSessionEmpty) {
+//   res.render("auth.hbs", {msg: 'неверный логин или пароль'});
+//   return;
+//  }
+
+
+// получение списка для авторизации
+app.post("/login", function (req, res) {
+  if(isSessionEmpty(req)) {
+    res.redirect("/");
+  return;
+  }
+ pool.query("select id_user, login, password from authorization where login=? and password=?", [req.query.user, req.query.pass],  (err, data) => {
+    if (err) return console.log(err);
+    if(!data.length) {
+      res.render("auth.hbs", {msg: 'неверный логин или пароль'});
+      return;
+    } else {
+      req.session.userId = data[0].id_user;
+      req.session.save(function() {
+        res.render("auth.hbs");   
+      });
+    }
+  })
 });
+ 
+
+
+// // переход на общую страницу для работы с базой
+// app.get("/", function (req, res) {
+//   res.render("index.hbs")
+// });
 
 
 // ////// Добавление мастера ////////////////
@@ -746,7 +787,7 @@ app.get("/report_masters_busy", function (req, res) {
 
 });
 
-app.listen(3000, "127.0.0.1");
+app.listen(3000, "127.0.0.1",() =>{console.log('app start')});
 
 app.use('/css', express.static('css'));
 app.use('/assets', express.static('assets'));
